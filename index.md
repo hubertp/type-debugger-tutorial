@@ -1,46 +1,17 @@
 ---
 layout: page
-title: Hello World!
-tagline: Supporting tagline
 ---
 {% include JB/setup %}
 
-Read [Jekyll Quick Start](http://jekyllbootstrap.com/usage/jekyll-quick-start.html)
+## Purpose ## {#Purpose}
 
-Complete usage and documentation available at: [Jekyll Bootstrap](http://jekyllbootstrap.com)
+Scala is a multi-paradigm language integrating functional and object-oriented programming. Scala is statically typed and supports a variation of [local type inference][lti]. Therefore it can provide compile-time guarantees regarding programs but at the same users have to deal with a non-trivial type system, sometimes counter-intuitive types inferred by the compiler or confusing error messages. Apart from a couple of diagnostic techniques there is currently no way for the users to understand the typechecking that runs as part of the compilation. The purpose of Scalad is to provide the programmers with a tool that allows them to explore the typechecking process, understand decisions that are made at every stage, see how type arguments are inferred, where and why implicit values were picked or what lead to an error.
 
-## Update Author Attributes
+## Tutorial ##
+The tutorial for the latest version of type debugger is available [here](tutorial.html).
 
-In `_config.yml` remember to specify your own data:
-    
-    title : My Blog =)
-    
-    author :
-      name : Name Lastname
-      email : blah@email.test
-      github : username
-      twitter : username
+## User studies ##
+We will be running user studies that cover the basics and more advanced of the possible usages of the type debugger prototype
 
-The theme should reference these variables whenever needed.
-    
-## Sample Posts
-
-This blog contains sample posts which help stage pages and blog data.
-When you don't need the samples anymore just delete the `_posts/core-samples` folder.
-
-    $ rm -rf _posts/core-samples
-
-Here's a sample "posts list".
-
-<ul class="posts">
-  {% for post in site.posts %}
-    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
-  {% endfor %}
-</ul>
-
-## To-Do
-
-This theme is still unfinished. If you'd like to be added as a contributor, [please fork](http://github.com/plusjade/jekyll-bootstrap)!
-We need to clean up the themes, make theme usage guides with theme-specific markup examples.
-
+[lti]:  http://www.cis.upenn.edu/~bcpierce/papers/lti.pdf "Local Type Inference"
 
