@@ -1,4 +1,3 @@
-package userstudies
 package implicits
 
 

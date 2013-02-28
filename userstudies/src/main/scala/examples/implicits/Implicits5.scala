@@ -1,3 +1,7 @@
+package implicits
+
+import scala.collection.immutable.SortedSet
+
 trait Implicits13 {
 
   def test01 {
@@ -42,7 +46,6 @@ trait Implicits13 {
 
   def test03 {
 
-    import scala.collection.immutable.SortedSet
     val xs = List(5,2,6)
 
     //Q : what is the type of set1? Why 

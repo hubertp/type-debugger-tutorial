@@ -1,6 +1,4 @@
-package userstudies
 package implicits
-
 
 trait Implicits09 {
   trait Base {

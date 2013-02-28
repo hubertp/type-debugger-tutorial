@@ -1,15 +1,14 @@
-package userstudies
 package implicits
 
-import collection.mutable
+import collection.mutable.LinkedList
 
 trait Implicits14 {
 
   def test01 {
     import scala.collection.BitSet
 
-    val lList: mutable.LinkedList[Int] = ???
-    val bSet: BitSet = ???
+    val lList: LinkedList[Int] = ???
+    val bSet: BitSet           = ???
 
     // Q: What is the type of a? Why
     val a = lList map (_ + 1)

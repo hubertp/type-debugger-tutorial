@@ -1,3 +1,5 @@
+package inference
+
 import scala.collection.{ Iterable, IterableLike }
 import scala.collection.generic.CanBuildFrom
 

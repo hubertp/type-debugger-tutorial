@@ -1,5 +1,4 @@
-package examples
-
+package inference
 
 trait Inference01 {
   abstract class Base

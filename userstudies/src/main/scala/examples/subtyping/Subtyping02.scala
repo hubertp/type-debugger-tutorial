@@ -1,3 +1,5 @@
+package subtyping
+
 trait Subtyping02 {
 
   abstract class Base

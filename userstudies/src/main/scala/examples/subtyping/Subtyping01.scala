@@ -1,6 +1,5 @@
 package subtyping
 
-
 trait Subtyping01 {
   // function subtyping
   // examples from the exam
