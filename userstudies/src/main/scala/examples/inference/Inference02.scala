@@ -1,3 +1,4 @@
+package inference
 
 trait Inference02 {
 

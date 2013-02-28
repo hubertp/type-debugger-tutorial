@@ -1,4 +1,4 @@
-package examples 
+package inference 
 
 trait OverloadedResolution {
 

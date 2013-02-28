@@ -1,4 +1,4 @@
-// second example
+package inference
 
 class Base[T]
 class NatA[T] extends Base[T]

@@ -71,3 +71,56 @@ Type inference for higher-kinded types.
  - What constraint(s) (and on which type parameters) does the typechecker collect while applying `bar` to `new Base1`?
  - What are the inferred type arguments for `bar`?
  - If we drop `T0 <: 0` bound, can we still infer correct type arguments? Why?
+
+#### test03 ####
+ - What type arguments would you typically expect the compiler to infer in the call to `create`?
+ - What are the real inferred type arguments for `Z` and `X`? Which one does not match the bounds of the type parameter and why?
+ - What are the collected constraint(s) for `Z`?
+
+#### test04 ####
+We want to define a generic partitioning function over `Iterable` (e.g. `Seq`) 
+
+##### partition01
+ - What is the type of `takeWhile` as a member of `xs`? Why?
+ - What is the type of `p1`? Why?
+
+##### partition02
+ - What is the type of `takeWhile` as a member of `xs`? Why?
+ - What is the type of `p2`? Why?
+ 
+ - In `res1a` application of `partition2`: what are the constraint(s) on type parameters `CC` and `T` and where do they come from?
+ - In `res2a` application of `partition2`: does the expected type affect the inference of the type parameters? If yes, how?
+
+##### partition03
+`CanBuildFrom` trait defined in Scala [docs](http://www.scala-lang.org/api/current/index.html#scala.collection.generic.CanBuildFrom) allows to build collections in a reusable way. `CanBuildFrom[-From, -Elem, +To]` (with type paramers) defined a way to build a collection, from a collection of type `From` (e.g. `Seq[_]`) having elements of type `Elem` (e.g. `Float`) to a target collection `To` (e.g. `List[Float]`).
+Notice that the only difference in signature between `partition1` and `partition3` is the implicit parameter.
+
+In `res2a` application:
+ - Whay is the type of `res2a`?
+ - What are the inferred type arguments for `T` and `CC`?
+ - What is the inferred implicit argument? Where there any other competing implicits? What affects the inference of type argument for `To`?
+
+In `res2b` application:
+ - Whay is the type of `res2b`?
+ - What are the inferred type arguments for `T` and `CC`?
+ - Does the expected type affect the type inference of type arguments in the application? If yes, how?
+ - What is the inferred implicit argument? Where there any other competing implicits? 
+
+### TypeInference04 ###
+<!-- existentials are getting inferred here -->
+#### test01 ####
+ - What is the expected type while typechecking (initially) the arguments of `foo`?
+ - What is the type of the argument `new A()` and `new B[Int]()`? Why?
+ - What is the type argument inferred for the application of `foo`?
+ - What are the constraint(s) that the compiler will use to infer the type for `S`, what type will it infer?
+ - Could the compiler infer `R[Nothing]` or `R[Any]` for `S`? Why?
+
+### TypeInference05 ###
+ - what is the type of `new A{}` and `new B{}`?
+ - What is the inferred type for `a`? Why?
+ 
+ - What is the type of the *then* branch in conditional for `b`?
+ - What is the type of the *else* branch in conditional for `b`?
+ - What is the type of `b`? Explain in terms of finding *least upper bound* and/or *greatest lower bound*.
+
+ 
