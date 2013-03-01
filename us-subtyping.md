@@ -31,6 +31,8 @@ For each of the applications of `m*` please answer the following questions:
  - If it is not, please state the final subtyping relation that could not be satisfied.
  - If it is, please state all the final subtyping tests. e.g. For `Map[A, B] <: Map[C, D]` that would be `A <: C`, `C <: A` and `B <: D`.
 
+Answers: 
+
  - m1:
  - m1:
  - m2:

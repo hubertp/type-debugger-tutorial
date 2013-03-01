@@ -42,12 +42,12 @@ All the examples are in the `type-debugger-tutorial/userstudies/src/main/scala/e
 
 Questions (*this will be changed to the online-survey that does all the timing, gathering data etc*):
 
- - [Subtyping](us-subtyping.html)
- - [Inference](us-inference.html)
- - [Implicit search](us-implicits.html)
- - [Existentials](us-existentials.html)
+ - [Subtyping]({{BASE_PATH}}us-subtyping.html)
+ - [Inference]({{BASE_PATH}}us-inference.html)
+ - [Implicit search]({{BASE_PATH}}us-implicits.html)
+ - [Existentials]({{BASE_PATH}}us-existentials.html)
  - Overload resolution
 
 
-[examplesSource]: https://github.com/hubertp/type-debugger-tutorial/userstudies
+[examplesSource]: https://github.com/hubertp/type-debugger-tutorial/tree/master/userstudies
 
