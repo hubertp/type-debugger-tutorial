@@ -7,9 +7,11 @@ tagline: "or Where did this type come from?"
 {% include JB/setup %}
 
 Before starting the tutorial make sure you have the latest version of the tool, as described at [Tool setup](toolsetup.html) instructions.
-We will start with a brief overview of the [User Interface](#UserInterface) without any technical details about the implementation and later give a walk-through for a couple of basic examples that should prepare you for more down-to-earth questions present in [User Studies](userstudies.html).
 
 ## User Interface ## {#UserInterface}
+
+    scalad path/to/files*
+
 
 Running the command does two things
 
@@ -19,12 +21,10 @@ Running the command does two things
 The initial typechecking is only used for providing the users with a feedback about real compiler erros in the code and does not do the actual debugging. The latter is required for [targeted debugging](#TargetedDebugging) of typechecking.
 
 The user interface is divided into two parts: visualization of the typechecking on the left and code editor on the right. The initial view of the former contains only a single node since we have not initiated any debugging yet.
-Let's run **scalad** on our set simple programs provided with the tutorial
+Let's run **scalad** on our set of simple programs provided with the tutorial
 
     scalad resources/code/Show.scala resources/code/FindDefinition.scala resources/code/SubtypingFun.scala
 
-
-<!-- todo: include Show.scala -->
 
 There we have two cases where we try to call a method `show` on an integer. For users who rely on implicit conversions in every day programming it is obvious why `bar` will compile whereas `foo` will not. But how does the typechecker really makes such a decision? At which point does it finally fail? In the following sections we will show how to answer those questions.
 
@@ -211,7 +211,7 @@ The answer can be surprising because it is indeed our first `Nil` argument which
 #### Where do all these constraints come from?
 In the previous example we were answering the question of where did the expected type come from. Type debugger can also help to understand how type arguments are inferred by the compiler.
 
-Search from the previous section highlighted goal `Given results from conformance (subtyping) tests with expected type, can type variables be finally resolved?`. Type variables are temporary types that collect constraints on the type parameters. However at some point we have to solve them and infer precise instantiations. The above goal has two children: `Can we solve type variable ?B ?` and the result of such type inference. Let's ask the former where do its constraints come from by right-clicking the goal. That reveals a close-by goal where the actual conformance (subtyping) check is done between the type of the argument and the formal parameter of the function at that position. In other words `Nil <: ?B` registers a lower bound constraint on the type variable representing type parameter `B`.
+Search from the previous section highlighted goal `Given results from conformance (subtyping) tests with expected type, can type variables be finally resolved?`. Type variables are temporary types that collect constraints on the type parameters. However at some point we have to solve them and infer precise instantiations. The above goal has two children: `Infer instantation for type variable ?B ...?` and the result of such type inference. Let's ask the former where do its constraints come from by right-clicking the goal. That reveals a close-by goal where the actual conformance (subtyping) check is done between the type of the argument and the formal parameter of the function at that position. In other words `Nil <: ?B` registers a lower bound constraint on the type variable representing type parameter `B`.
 Finding the constraint source manually for this example was easy but (unfortunately) it is usually not the case for real programs.
 
 [stlc]: http://en.wikipedia.org/wiki/Simply_typed_lambda_calculus

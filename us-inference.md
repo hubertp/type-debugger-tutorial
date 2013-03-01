@@ -1,13 +1,12 @@
 ---
 layout: page
 title: "Questions: Type inference"
-tagline: "Questions mostly focus on type inference"
 ---
 {% include JB/setup %}
 
 <!--- list of all examples -->
 
-### TypeInference01 ###
+### Inference01 (source at *inference/Inference01.sala*) ###
 
 #### test01 ####
  - What is the return type of `test01`
@@ -27,7 +26,7 @@ tagline: "Questions mostly focus on type inference"
 
 <!-- -->
 
-### TypeInference02 ###
+### Inference02 (source at *inference/Inference02.sala*) ###
 Let's have some fun with Nothing and some of the limitations of type inference.
 
 #### test01 ####
@@ -56,7 +55,7 @@ Let's have some fun with Nothing and some of the limitations of type inference.
  - What are the constraint(s) on `T` and do we calculate `least upper bound` or `greatest lower bound` of the constraint(s) for its inference? Why?
 - Does the order of declaration of type parameters (compare `bar1` with `bar2`) have any difference on inference? Why?
 
-### TypeInference03 ###
+### Inference03 (source at *inference/Inference03.sala*) ###
 Type inference for higher-kinded types.
 
 #### test01 ####
@@ -106,7 +105,7 @@ In `res2b` application:
  - Does the expected type affect the type inference of type arguments in the application? If yes, how?
  - What is the inferred implicit argument? Where there any other competing implicits? 
 
-### TypeInference04 ###
+### Inference04 (source at *inference/Inference04.sala*)###
 <!-- existentials are getting inferred here -->
 #### test01 ####
  - What is the expected type while typechecking (initially) the arguments of `foo`?
@@ -115,7 +114,7 @@ In `res2b` application:
  - What are the constraint(s) that the compiler will use to infer the type for `S`, what type will it infer?
  - Could the compiler infer `R[Nothing]` or `R[Any]` for `S`? Why?
 
-### TypeInference05 ###
+### Inference05 (source at *inference/Inference05.sala*) ###
  - what is the type of `new A{}` and `new B{}`?
  - What is the inferred type for `a`? Why?
  

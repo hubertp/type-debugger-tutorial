@@ -75,52 +75,43 @@ trait Implicts04 {
     def compute(a: A, b: B): R
   }
 
-  object ImplicitsForComp {
-    implicit val mByM = new MultiplicationComp[Matrix, Matrix, Matrix] {
-      def compute(a: Matrix, b: Matrix): Matrix = ???
-    }
+  object MultiplicationComp {
+    implicit val mByM: MultiplicationComp[Matrix, Matrix, Matrix] = ???
 
-    implicit val mByV = new MultiplicationComp[Matrix, Vector, Vector] {
-      def compute(a: Matrix, b: Vector): Vector = ???
-    }
+    implicit val mByV: MultiplicationComp[Matrix, Vector, Vector] = ???
 
-    implicit val mByInt = new MultiplicationComp[Matrix, Int, Matrix] {
-      def compute(a: Matrix, b: Int): Matrix = ???
-    }
+    implicit val mByInt:  MultiplicationComp[Matrix, Int, Matrix] = ???
 
-    implicit val genericMult = new MultiplicationComp[AnyRef, AnyRef, AnyRef] {
-      // default case, invalid
-      def compute(a: AnyRef, b: AnyRef): AnyRef = ???
+    implicit val genericMult: MultiplicationComp[AnyRef, AnyRef, AnyRef] = ???
 
-    }
+    implicit val generic2Mult: MultiplicationComp[Matrix, AnyRef, AnyRef] = ???
+
+    implicit val generic3Mult: MultiplicationComp[AnyRef, Matrix, AnyRef] = ???
   }
 
-  object Specific {
-    import ImplicitsForComp._
+  def multiplyMe[A, B, C](x: A, b: B)(implicit c: MultiplicationComp[A, B, C]): C =
+    c.compute(x, b)
+
+  def test() {
 
     val m = new Matrix {}
     val v = new Vector {}
     val i = 1
     val j = 1.0
 
+    multiplyMe(m, m): Matrix // 1
+    multiplyMe(v, m): Matrix // 2
+    multiplyMe(m, v): Vector // 3
+    multiplyMe(m, v): Matrix // 4
+    multiplyMe(m, i): Matrix // 5
+    multiplyMe(m, i): Vector // 6
+    multiplyMe(m, j): Matrix // 7
 
-    def test() {
-      multiplyMe(m, m): Matrix // 1
-      multiplyMe(v, m): Matrix // 2
-      multiplyMe(m, v): Vector // 3
-      multiplyMe(m, v): Matrix // 4
-      multiplyMe(m, i): Matrix // 5
-      multiplyMe(m, i): Vector // 6
-      multiplyMe(m, j): Matrix // 7
-
-      multiplyMe(m, m)         // 8
-      multiplyMe(m, v)         // 9
-      multiplyMe(v, m)         // 10
-      multiplyMe(m, i)         // 11
-      multiplyMe(m, j)         // 12
-    }
-
-    def multiplyMe[A, B, C](x: A, b: B)(implicit c: MultiplicationComp[A, B, C]): C =
-      c.compute(x, b)
+    multiplyMe(m, m)         // 8
+    multiplyMe(m, v)         // 9
+    multiplyMe(v, m)         // 10
+    multiplyMe(m, i)         // 11
+    multiplyMe(m, j)         // 12
   }
+
 }

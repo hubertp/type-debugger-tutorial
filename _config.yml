@@ -27,7 +27,7 @@ scala_compiler :
   version : 2.11.0-SNAPSHOT
 
 sources :
-  download : http://lampwww.epfl.ch/~plocinic/scalad-tutorial
+  download : http://lampwww.epfl.ch/~plocinic/type-debugger-binaries
 
 code_dir : resources/code
 

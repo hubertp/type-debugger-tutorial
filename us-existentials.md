@@ -1,7 +1,6 @@
 ---
 layout: page
-title: "Questions: Existentials"
-tagline: "Questions related to existential types"
+title: "Questions: Existential types (case study)"
 ---
 {% include JB/setup %}
 
