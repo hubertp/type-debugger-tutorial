@@ -1,4 +1,5 @@
 package inference
+import scala.language.implicitConversions
 
 object Test {
 
@@ -6,29 +7,35 @@ object Test {
     def v: Int
   }
   object Base {
-    implicit def b2Int(b: Base): Double = b.v
+    implicit def b2Int(b: Base): Int = b.v
   }
 
   class A(val v: Int) extends Base
   object A {
-    implicit def a2Int(a: A): Int = a.v
+    implicit def a2Int(a: A): Int = a.v       
   }
+
   class B(val v: Int) extends Base
 
-  class Bar {
-    def foo(x: Int) = ???
+  class Foo {
+    def foo(x: Int) = ???     // 1
   }
 
-  class Bar2 extends Bar {
-    def foo(x: AnyVal) = ???
+  class Bar extends Foo {
+    def foo(x: AnyVal) = ???  // 2
+  }
+
+  object Bar {
+    // Bar which applies foo to Base
+    implicit def foo2Base(a: Foo): { def foo(x: Base): Nothing } = ???
   }
 
   def test {
     val a = new A(1)
     val b = new B(1)
 
-    val c = new Bar2()
-    c.foo(a)
-    c.foo(b)
+    val c = new Bar()
+    c.foo(a)    // A
+    c.foo(b)    // B
   }
 }

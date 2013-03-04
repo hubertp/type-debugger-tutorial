@@ -4,7 +4,7 @@ title: "More examples"
 ---
 {% include JB/setup %}
 
-Examples in the [introduction](tutorial.md) did not go into much detail on what type debugger was showing. In this section we will give a more involved description in a form of a walk-through. Users do not have to follow every example in sequence and therefore can stop/start at any point.
+Examples in the [introduction]({{BASE_PATH}}tutorial.md) did not go into much detail on what type debugger was showing. In this section we will give a more involved description in a form of a walk-through. Users do not have to follow every example in sequence and therefore can stop/start at any point.
 
 ## Debugging simple subtyping ##
 

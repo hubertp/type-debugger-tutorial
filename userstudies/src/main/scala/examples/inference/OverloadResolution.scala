@@ -3,229 +3,197 @@ package inference
 trait OverloadedResolution {
 
 
-  def test1 {
+  def test01 {
 
     class Test {
-      def foo(arg: Any) {}
-      def foo(arg: Int) {}
-      def foo(arg: AnyRef) {}
+      def foo(arg: Any) {}     // 1
+      def foo(arg: Int) {}     // 2
+      def foo(arg: AnyRef) {}  // 3
     }
 
     val t = new Test()
-    t.foo(1)  
-    t.foo("abc")
+    t.foo(1)      // A
+    t.foo("abc")  // B
   }
 
-  def test2 {
+  def test02 {
 
     class Ambiguous {
-      def foo(x: Any, y: Int) {}
-      def foo(x: Int, y: Any) {}
+      def foo(x: Any, y: Int) {} // 1
+      def foo(x: Int, y: Int) {} // 2
     }
 
     val t = new Ambiguous()
-    t.foo(1, 2)
-
-    val arg1: Any = 1
-    t.foo(arg1, 2)
+    t.foo(1, 2)    // A
+    t.foo(1.0, 2)  // B
   }
 
-  def test3 {
+  def test03 {
     class Calculation {
-      def square(x: Double) {}
-      def square(y: Float) {}
+      def square(x: Double) {}   // 1
+      def square(y: Float) {}    // 2
     }
 
     val c = new Calculation()
-    c.square(1)
-    c.square(1.0)
+    c.square(1)    // A
+    c.square(1.0)  // B
   }
 
-  def test4 {
+  def test04 {
 
-    class Base1 {
-      def square(x: Int): Int = ???
+    class Base {
+
+      def square(x: Int): Int = ???        // 1
+
+      def root(x: Double): Double = ???    // 3
+
     }
 
-    class SubBase1 extends Base1 {
-      def square(x: Double): Double = ???
+    class SubBase extends Base {
+
+      def square(x: Double): Double = ???  // 2
+
+      def root(x: Int): Double = ???       // 4
+
     }
 
-    val t = new SubBase1()
+    val t = new SubBase()
 
     val x: Int = 1
     val y: Double = 2.0
 
-    t.square(x)
-    t.square(y)
+    t.square(x)   // A
+    t.square(y)   // B
+
+    t.root(x)     // C
+    t.root(y)     // D
 
   }
 
-  def test5 {
+  def test05 {
 
-    class Base2 {
-      def square(x: Double): Double = ???
+    class Base {
+      def foo(x: Int, y: Int = 0) {}  // 1
+      def foo(x: Int) {}              // 2
     }
 
-    class SubBase2 extends Base2 {
-      def square(x: Int): Int = ???
-    }
-
-    val t = new SubBase2()
-
-    val x: Int = 1
-    val y: Double = 2.0
-    val z: Long = 3
-
-    t.square(x)
-    t.square(y)
-    t.square(z)
-  }
-  // remove?
-  def test7 {
-
-    class Base3
-    class SubBase3 extends Base3
-    class Test3 {
-      def foo(x: Base3) {}
-      def foo(x: SubBase3) {}
-    }
-
-    val t = new Test3()
-
-    val x = new SubBase3()
-    val y: Base3 = new SubBase3()
-
-    t.foo(x)
-    t.foo(y)
+    val t = new Base()
+    t.foo(1)       // A
+    t.foo(x = 1)   // B
   }
 
-  def test8 {
+  def test06 {
 
-    class Base4 {
-      def foo(x: Int, y: String = "") {}
-      def foo(y: Int) {}
+    class Base {
+      def foo(x: Int, y: Double, z: Int = 0) {}  // 1
+      def foo(x: Int, y: AnyVal) {}              // 2
     }
 
-    val t = new Base4()
-    t.foo(1)
-    t.foo(1,"")
+    val t = new Base()
+    t.foo(1, 2)     // A
+    t.foo(1, 2.0)   // B
   }
 
-  def test9 {
-
-    class Base5 {
-      def foo(x: Int, y: Double, z: Int = 0) {}
-      def foo(x: Int, y: Int) {}
+  def test07 {
+    class Base {
+      def foo(x: Base) {}      // 1
     }
 
-    val t = new Base5()
-    t.foo(1, 2)
-    t.foo(1, 2.0)
+    class SubBase extends Base {
+      def foo(x: SubBase) {}   // 2
+    }
+
+    val x = new Base()
+    val y = new SubBase()
+
+    val t = new SubBase()
+    t.foo(x)   // A
+    t.foo(y)   // B
   }
+
+  def test08 {
+
+    class Base {
+      def foo(x: SubBase) {}    // 1
+    }
+
+    class SubBase extends Base {
+      def foo(x: Base) {}       // 2
+    }
+
+    val x = new Base()
+    val y = new SubBase()
+
+    val t = new SubBase()
+    t.foo(x)  // A
+    t.foo(y)  // B
+  }
+
+  def test09 {
+
+    class Base {
+      def foo(s: String): String = ???           // 1
+      def foo: String = ???                      // 2
+    }
+    class SubBase extends Base {
+      override def foo(s: String): String = ???  // 3
+    }
+
+    val x = new SubBase()
+
+    x.foo       // A
+    x.foo("")   // B
+
+  }
+
 
   def test10 {
-    class Base6 {
-      def foo(x: Base6) {}
-    }
-
-    class SubBase6 extends Base6 {
-      def foo(x: SubBase6) {}
-    }
-
-    val x = new Base6()
-    val y = new SubBase6()
-
-    val t = new SubBase6()
-    t.foo(x)
-    t.foo(y)
-  }
-
-  def test11 {
-
-    class Base7 {
-      def foo(x: SubBase7) {}
-    }
-
-    class SubBase7 extends Base7 {
-      def foo(x: Base7) {}
-    }
-
-    val x = new Base7()
-    val y = new SubBase7()
-
-    val t = new SubBase7()
-    t.foo(x)
-    t.foo(y)
-  }
-
-  def test12 {
-
-    class Base8 {
-      def foo(s: String): String = ???
-      def foo: String = ???
-    }
-    class SubBase8 extends Base8 {
-      override def foo(s: String): String = ???
-    }
-
-    val x = new SubBase8()
-
-    x.foo
-    x.foo("")
-
-  }
-
-
-  def test13 {
     class A
     class B extends A
 
     class C {
-      def foo(x: B)    = ???
-      def foo(x: => B) = ???
-      def bar(x: A)    = ???
-      def bar(x: B)    = ???
+      def foo(x: B)    = ???  // 1
+      def foo(x: => B) = ???  // 2
+      def foo(x: A)    = ???  // 3
     }
 
     class D {
-      def bar(x: A)    = ???
-      def bar(x: => B) = ???
+      def bar(x: A)    = ???  // 4
+      def bar(x: => B) = ???  // 5
     }
 
     val c = new C()
  
-    c.foo(new B())
-    c.bar(new A())
-    c.bar(new B())
+    c.foo(new B())  // A
 
     val d = new D()
-    d.bar(new A())
-    d.bar(new B())
+    d.bar(new A())  // B
+    d.bar(new B())  // C
 
   }
 
-  def test14 {
-    class Simple {
-      def foo(x: Int) = ???
-      def foo(x: Double) = ???
-    }
+  def test11 {
 
     class Foo {
-      def foo(x: (Int, Double)) = ???
+      def foo(x: (Int, Double)) = ???  // 1
+
+      def bar(x: (Int, Double)) = ???  // 3
     }
 
     class Bar extends Foo {
-      def foo(x: (Int, AnyVal)) = ???
-    }
+      def foo(x: (Int, AnyVal)) = ???  // 2
 
-    val s = new Simple()
-    s.foo(1)
+      def bar(x: Int, y: AnyVal) = ??? // 4
+      def bar(x: (Int, AnyVal)) = ???  // 5
+    }
 
     val c = new Bar()
 
-    c.foo(1, 2.0)
-    c.foo(1, 1)
+    c.foo(1, 2.0)   // A
+    c.foo(1, 1)     // B
+
+    c.bar(1, 2.0)   // C
+    c.bar(1, 1)     // D
   }
 
 }

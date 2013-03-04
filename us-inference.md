@@ -115,11 +115,20 @@ In `res2b` application:
  - Could the compiler infer `R[Nothing]` or `R[Any]` for `S`? Why?
 
 ### Inference05 (source at *inference/Inference05.sala*) ###
+#### test01 ####
  - what is the type of `new A{}` and `new B{}`?
  - What is the inferred type for `a`? Why?
+
+#### test02 ####
  
  - What is the type of the *then* branch in conditional for `b`?
  - What is the type of the *else* branch in conditional for `b`?
  - What is the type of `b`? Explain in terms of finding *least upper bound* and/or *greatest lower bound*.
+
+#### test03 ####
+ - What is the type of `c`? Explain in terms of finding *least upper bound* and/or *greatest lower bound*.
+
+#### test04 ####
+ - What is the type of `d`? Explain in terms of finding *least upper bound* and/or *greatest lower bound*.
 
  
