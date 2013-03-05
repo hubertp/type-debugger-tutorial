@@ -36,10 +36,6 @@ trait Inference02 {
     val res6 = bar1(1) _
     res6(2)
 
-    def bar2[X, T <: X](a: X)(b: T): X = a
-
-    val res7 = bar2(1) _
-    res7(2)
     ()
 
   }

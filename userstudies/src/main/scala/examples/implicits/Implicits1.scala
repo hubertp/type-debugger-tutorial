@@ -44,9 +44,7 @@ trait Implicts03 {
   }
 
   object Helpers {
-    implicit val firstImplicit = new Store[AnyVal] {
-      def get(): AnyVal = ???
-    }
+    implicit val firstImplicit: Store[AnyVal] = ???
   }
 
   object UnderstandingScopes {
@@ -54,9 +52,7 @@ trait Implicts03 {
     def test01() {
       import Helpers._
 
-      implicit val secondImplicit = new Store[Int] {
-        def get(): Int = ???
-      }
+      implicit val secondImplicit: Store[Int] = ???
 
       foo(1)
     }

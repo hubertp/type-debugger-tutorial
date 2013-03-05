@@ -7,39 +7,29 @@ trait Action[-T] {
 }
 
 object Action {
-  implicit val generalImpl: Action[Any] = new Action[Any] {
-    def apply(x: Any): String = ???
-  }
-  implicit val longImpl: Action[Double] = new Action[Double] {
-    def apply(x: Double): String = ???
-  }
+  implicit val generalImpl: Action[Any] = ???
+  implicit val longImpl: Action[Double] = ???
 }
 
 trait Implicits05 {
 
   def test01 {
-    implicit val localImpl: Action[Int] = new Action[Int] {
-      def apply(x: Int): String = ???
-    }
+    implicit val localImpl: Action[Int] = ???
 
-    // Q: Will we get an ambiguity here
-    // Q: If no, which implicit will get picked
-    // Q: Is generalImpl implicit applicable here
-    foo(1)
-    foo(1.0)
+    foo(1)    // 1
+    foo(1.0)  // 2
   }
 
   def test02 {
-    // Q: Will we get an imbiguity here
-    // Q: Which implicit will get picked here
-    // Q: Is generalImpl implicit applicable here
-    foo(1)
-    foo(1.0)
+    foo(1)    // 3
+    foo(1.0)  // 4
   }
 
   def foo[A](v: A)(implicit tc: Action[A]) = tc(v)
 
 }
+
+// ----------------------------------------------------
 
 trait BasicAction[+S] {
   def retrieve: S
@@ -55,15 +45,9 @@ trait GAction[-T, +S] extends BasicAction[S] {
 }
 
 object GAction {
-  implicit val generalImpl: GAction[Any, Any] = new GAction[Any, Any] {
-    def apply(x: Any): Any = ???
-    def retrieve: Any = ???
-  }
+  implicit val generalImpl: GAction[Any, Any] = ???
 
-  implicit val lessGeneralImpl: GAction[AnyRef, Any] = new GAction[AnyRef, Any] {
-    def apply(x: AnyRef): Any = ???
-    def retrieve: Any = ???
-  }
+  implicit val lessGeneralImpl: GAction[AnyRef, Any] = ???
 }
 
 trait Implicits06 {
@@ -74,15 +58,8 @@ trait Implicits06 {
 
 
   def test01 {
-    implicit val someImpl: GAction[Int, Int] = new GAction[Int, Int] {
-      def apply(x: Int): String = ???
-      def retrieve: Int = ???
-    }
+    implicit val someImpl: GAction[Int, Int] = ????
 
-    // same question to both
-    // Q: Will we get an ambiguity here
-    // Q: If no, which implicit will get picked (out of three)
-    // Q: Is generalImpl implicit applicable here
     foo(1)
     foo(1.0)
     identity(foo(1))

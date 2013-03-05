@@ -126,20 +126,10 @@ trait Implicits12 {
     val a = new Pair(1, 2)
     val b = new Pair(2, 1)
 
-    // Q: Why does this compile? 
     val someInt: Ordered[Int] = 0
 
-    // Q: Why cannot it prove that Int <: Ordered[Int]
-
-
-    // Q: Why cannot it prove that Int <: Ordered[Int]
     a lessThan b
 
-
-    // Q: What implicits did it infer and why?
-
-
-    // Q: What implicits did it infer and why?
     a lessThan2 b
 
   }

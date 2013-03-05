@@ -20,27 +20,27 @@ title: "Questions: Type inference"
 
 #### test03 ####
  - What kind of information does `[T >: A]` give us about local type parameter `T`?
- - What type argument has been inferred for type parameter `T`?
  - What constraint(s) is/are used for inferring the type `T`?
  - Do we calculate *least upper bound* or *greatest lower bound* of those constraint(s)? Why?
+ - What type argument has been inferred for type parameter `T`?
 
-<!-- -->
+<!-- - -->
 
 ### Inference02 (source at *inference/Inference02.sala*) ###
 Let's have some fun with Nothing and some of the limitations of type inference.
 
 #### test01 ####
- - For `res1(2)` why does the mismatch occur between `Nothing` and `Int`?
+
  - Where is the type for `T` inferred: at assignment to `res1` or at application `res1(2)`?
  - What is the type of the expression `res1`?
- - While infering `T` for `res1` what are the constraints that inferencer uses?
- - Could the typechecker infer `Any` instead of `Nothing` in general in this situation?
+ - While infering `T` in `foo` what are the constraints on the type parameter that inferencer uses?
+ - Could the typechecker infer `Any` instead of `Nothing` in general for `T` in this situation?
  - `foo` is a function. Yet it is partially applied and assigned to a value. What does the typechecker do for that to be possible?
 
  - What is the type of `res2`?
  - What are the constraints on `T` while inferring the type of `fooVariation`?
  - Do we calculate *least upper bound* or *greatest lower bound* of those constraint(s)? Why?
- - State precisely why did the compiler infer `T` to be of type `Any` and `Nothing` this time.
+ - Why is the inferred type different this time?
 
 #### test02 ####
  - What type is inferred for `X` and what for `T` in `bip`?
@@ -53,7 +53,6 @@ Let's have some fun with Nothing and some of the limitations of type inference.
  - What is the type of `res6`?
  - What types are inferred for `X` and `T` in `bar1`?
  - What are the constraint(s) on `T` and do we calculate `least upper bound` or `greatest lower bound` of the constraint(s) for its inference? Why?
-- Does the order of declaration of type parameters (compare `bar1` with `bar2`) have any difference on inference? Why?
 
 ### Inference03 (source at *inference/Inference03.sala*) ###
 Type inference for higher-kinded types.

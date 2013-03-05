@@ -11,8 +11,6 @@ trait Inference03 {
   class Base1 extends B[C]
   
 
-
-
   def test01 {
 
     def foo[U <: B[T], T <: A]( param: U ): Unit = ()

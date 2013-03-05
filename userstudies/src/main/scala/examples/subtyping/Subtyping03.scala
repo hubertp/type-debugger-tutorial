@@ -1,6 +1,6 @@
 package subtyping
 
-trait Subtyping04 {
+trait Subtyping03 {
 
   def test1 {
     def foo[T, B >: T](x: Map[T, B]): List[T] = ???

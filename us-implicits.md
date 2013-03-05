@@ -10,35 +10,36 @@ title: "Questions: Implicit search"
  - Are there any other implicits in the scope of `a` that the compiler will check? If yes, where are they located?
 
 ### Implicits02 ###
- - What is the inferred type of `A` in `foo` application?
+ - What is the inferred type of `A` in `foo(1)` application?
  - While searching for the argument for implicit parameter `tc`, are each of the following implicits `firstImplicit`, `secondImplicit` and `thirdImplicit` in the implicit search scope?
  - Which implicit has been applied as an implicit argument for `tc`?
  - Is there more than one implicit that the compiler verified to be applicable for that position? If so, why was the one above selected?
 
 ### Implicits03 ###
- - What is the inferred implicit argument for `foo(1)` application?
- - What is the *shape* of the type that will be searched for by the typechecker?
+ 
+ - What is the type that will be searched for by the typechecker?
  - Is `firstImplicit` and `secondImplicit` in scope? If yes, then are they applicable for the searched parameter?
+ - What is the inferred implicit argument for `foo(1)` application?
  - If there is more than one applicable implicit how did the typechecker do the selection?
 
 ### Implicits04 ###
 In this example we would like to use implicits to safely do matrix-matrix, matrix-vector etc. products. The test provides multiple combinations.
 
-Your task is to say which of the implicits in `MultiplicationComp` are verified by the compiler to be applicable as arguments for implicit parameter `c` in `multiplyMe` applcation. If there is more than one applicable, specify how does the typechecker select the most specific one or why it is not able to (on failure).
+Your task is to say which of the implicits in `MultiplicationComp` are verified by the compiler to be correct as arguments for implicit parameter `c` in `multiplyMe` applcation. If there is more than one applicable, specify how does the typechecker select the most specific one or why it is not able to (on failure).
 
 Examples:
  - 1: 
  - 2:
  - 3:
- - 4:
+ - 4: // Why cannot it resolve ambiguity, but succeeded in 3)
  - 5:
  - 6:
  - 7:
- - 8:
- - 9:
+ - 8: // Why cannot it resolve the ambiguity, but succeeded in 1)
+ - 9: // Why cannot it resolve the ambiguity, but succeeded in 3)
  - 10:
- - 11:
- - 12:
+ - 11: 
+ - 12: // Why this one fails but 11 succeeds?
 
 
 
@@ -48,18 +49,18 @@ Notice that in the next two examples you are required to compile the package obj
 #### test01 ####
 Consider implicits: `packageObjectAction` (in *implicits/package.scala*), `localImpl`, `longImpl` and `generalImpl`. 
 
-- For each of the implicits say whether they are applicable or not, as implicit arguments for the application of `foo(1)` context. Provide very brief explanation for each.
+- For each of the implicits say whether they are applicable or not, as implicit arguments for the application of `foo(1)` context.
 - Why is the compiler not able to resolve the ambiguity in the `foo(1)` case?
 
-- For each of the implicits say whether they are applicable or not as implicit arguments for the application of `foo(1.0)` context. Provide very brief explanation for each.
+- For each of the implicits say whether they are applicable or not as implicit arguments for the application of `foo(1.0)` context. 
 - Which implicit argument is applied and why?
 - If more than one implicit is verified to be acceptable, then how does the compiler select the right one?
 
 #### test02 ####
-- For each of the implicits say whether they are applicable or not, as implicit arguments for the application of `foo(1)` context. Provide very brief explanation for each.
+- For each of the implicits say whether they are applicable or not, as implicit arguments for the application of `foo(1)` context.
 - Which implicit argument is applied and why?
 
-- For each of the implicits say whether they are applicable or not as implicit arguments for the application of `foo(1.0)` context. Provide very brief explanation for each.
+- For each of the implicits say whether they are applicable or not as implicit arguments for the application of `foo(1.0)` context. 
 - If more than one implicit is verified to be acceptable, then how does the compiler select the right one?
 - Which implicit argument is applied and why?
 
