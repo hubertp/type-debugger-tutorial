@@ -11,33 +11,43 @@ trait Inference03 {
   class Base1 extends B[C]
   
 
-  def foo[U <: B[T], T <: A]( param: U ): Unit = ()
+
 
   def test01 {
+
+    def foo[U <: B[T], T <: A]( param: U ): Unit = ()
+    
     foo(new Base1)
+    
     ()
   }
 
-  def bar[U[T0 <: A] <: B[T0], T <: A]( param: U[T] ): Unit = ()
+  
 
   def test02 {
+
+    def bar[U[T0 <: A] <: B[T0], T <: A]( param: U[T] ): Unit = ()
+
     bar(new Base1)
+    
     ()
   }
 
-  trait With[T] {
-    def elem: T
-  }
-
-  class Basic[T](x : T) extends With[T] {
-    def elem = x
-  }
-
-  object Sugar {
-    def create[Z, X <: With[Z]](x: X) = x.elem
-  }
 
   def test03 {
+
+    trait With[T] {
+      def elem: T
+    }
+
+    class Basic[T](x : T) extends With[T] {
+      def elem = x
+    }
+
+    object Sugar {
+      def create[Z, X <: With[Z]](x: X) = x.elem
+    }
+
     val value = new Basic(1)
     Sugar.create(value)
   }

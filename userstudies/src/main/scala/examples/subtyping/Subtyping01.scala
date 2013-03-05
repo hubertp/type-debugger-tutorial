@@ -1,8 +1,6 @@
 package subtyping
 
 trait Subtyping01 {
-  // function subtyping
-  // examples from the exam
   class S
   class T extends S
 
@@ -20,8 +18,6 @@ trait Subtyping01 {
   }
   class Op1 extends Base
   val a = new Op1
-
-
 
   def test1(f: Any)                                   = ???
   def test2(f: Record2[U, T] => T)                    = ???
@@ -42,11 +38,8 @@ trait Subtyping01 {
     val arg7: MyFunction[Record1[T], Record2[V, U]]  = ???
     val arg8: Set[Base#Inner] => Int                 = ???
 
-    // Q: can you answer those without the compiler
-    // Q: did you get all of them right
-    // Q: does the debugger help in understanding the subtyping tests
     test1 (arg1)
-    test2 (arg2) // todo: avoid producing lots of subtype tests
+    test2 (arg2)
     test3 (arg3)
     test4 (arg4)
     test5 (arg5)

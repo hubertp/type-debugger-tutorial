@@ -105,6 +105,7 @@ In `res2b` application:
  - Does the expected type affect the type inference of type arguments in the application? If yes, how?
  - What is the inferred implicit argument? Where there any other competing implicits? 
 
+<!-- SKIP QUESTION -->
 ### Inference04 (source at *inference/Inference04.sala*)###
 <!-- existentials are getting inferred here -->
 #### test01 ####
@@ -115,20 +116,20 @@ In `res2b` application:
  - Could the compiler infer `R[Nothing]` or `R[Any]` for `S`? Why?
 
 ### Inference05 (source at *inference/Inference05.sala*) ###
-#### test01 ####
- - what is the type of `new A{}` and `new B{}`?
- - What is the inferred type for `a`? Why?
 
-#### test02 ####
+
+#### test01 ####
  
  - What is the type of the *then* branch in conditional for `b`?
  - What is the type of the *else* branch in conditional for `b`?
  - What is the type of `b`? Explain in terms of finding *least upper bound* and/or *greatest lower bound*.
+
+#### test02 ####
+ - what is the type of `new A{}` and `new B{}`?
+ - What is the inferred type for `a`? Why?
 
 #### test03 ####
  - What is the type of `c`? Explain in terms of finding *least upper bound* and/or *greatest lower bound*.
 
 #### test04 ####
  - What is the type of `d`? Explain in terms of finding *least upper bound* and/or *greatest lower bound*.
-
- 

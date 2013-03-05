@@ -73,6 +73,8 @@ For each of the tests explain how were the types inferred (`T` and `B`) and whet
  - What are the inferred types of `T` and `S` for `bar` application? Are they same as for `foo`? Explain.
  - Why does the application of `bar` succeed in this example but fail in the previous test?
 
+
+<!-- SKIP QUESTION -->
 ### Subtyping04 (source at *subtyping/Subtyping04.scala*)
 <!-- todo: either move this to the end or provide a helper -->
 Let's assume a fragment of generic Tree data structure, as presented in the example. It looks similar to how Scala collections are built - you could easily extend Tree to mutable and immutable data structures. However the details are not so important.

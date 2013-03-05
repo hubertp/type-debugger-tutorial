@@ -1,5 +1,6 @@
 package implicits
 
+// compile together with package.scala
 
 trait Action[-T] {
   def apply(x: T): String
