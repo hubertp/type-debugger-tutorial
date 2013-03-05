@@ -41,20 +41,9 @@ Answers:
  - m4:
  - m5:
 
+
+
 ### Subtyping03 (source at *subtyping/Subtyping03.scala*)
-Let's assume a fragment of generic Tree data structure, as presented in the example. It looks similar to how Scala collections are built - you could easily extend Tree to mutable and immutable data structures. However the details are not so important.
-Compiler will report the following error:
-
-    userstudies/src/main/scala/examples/inference/Subtyping04.scala:21: error: illegal inheritance;
-     self-type mutable.ITree[N] does not conform to TreeLike[N,mutable.ITree]'s selftype TreeLike[N,mutable.ITree]
-                   with TreeLike[N, ITree] {
-                        ^
-    one error found
-
-- What is the underlying problem?
-- How would you fix this error?
-
-### Subtyping04 (source at *subtyping/Subtyping04.scala*)
 For these questions remember that Integer is a subtype of Number.
 
 ### test1, test2, test3 ###
@@ -84,3 +73,16 @@ For each of the tests explain how were the types inferred (`T` and `B`) and whet
  - What are the inferred types of `T` and `S` for `bar` application? Are they same as for `foo`? Explain.
  - Why does the application of `bar` succeed in this example but fail in the previous test?
 
+### Subtyping04 (source at *subtyping/Subtyping04.scala*)
+<!-- todo: either move this to the end or provide a helper -->
+Let's assume a fragment of generic Tree data structure, as presented in the example. It looks similar to how Scala collections are built - you could easily extend Tree to mutable and immutable data structures. However the details are not so important.
+Compiler will report the following error:
+
+    userstudies/src/main/scala/examples/inference/Subtyping04.scala:21: error: illegal inheritance;
+     self-type mutable.ITree[N] does not conform to TreeLike[N,mutable.ITree]'s selftype TreeLike[N,mutable.ITree]
+                   with TreeLike[N, ITree] {
+                        ^
+    one error found
+
+- What is the underlying problem?
+- How would you fix this error?

@@ -1,64 +1,30 @@
 package subtyping
 
-trait Subtyping04 {
+import scala.language.higherKinds
 
-  def test1 {
-    def foo[T, B >: T](x: Map[T, B]): List[T] = ???
-    val x: Map[Number, Integer] = ???
-    val y: List[Integer] = foo(x)
-    ()
+trait TreeLike[N, This[X] <: TreeLike[X, This]] {
+  
+  type NodeT <: BaseNode[N]
+
+  trait BaseNode[T <: N] {
+    def value: T
+    def nodes: Set[NodeT]
   }
 
-  def test2 {
-    def foo[T](x: Map[T, _ >: T]): List[T] = ???
-    val x: Map[Number, Integer] = ???
-    val y: List[Integer] = foo(x)
-    ()
-  }
+}
 
-  def test3 {
-    def foo[T, B <: T](x: Map[T, B]): List[B] = ???
-    val x: Map[Number, Integer] = ???
-    val y: List[Integer] = foo(x)
-    ()
-  }
+abstract class Tree[N] extends TreeLike[N, Tree] { }
 
-  def test4 {
-    def foo[T, S](x: Map[T, T], y: Map[S, S]) {}
-    val x: Map[Number, String] = ???
-    val y: Map[Integer, String] = ???
-    foo(x, y)
-  }
 
-  def test5 {
-    def foo[T, S](x: Map[_ <: T, S], y: Map[_ <: T, S]) {}
-    val x: Map[Number, String] = ???
-    val y: Map[Integer, String] = ???
-    foo(x, y)
-  }
+package mutable {
+  trait ITree[N] extends Tree[N]
+               with TreeLike[N, ITree] {
 
-  def test6 {
+    type NodeT <: BaseNode[N]
 
-    def foo[T <: Number](a: Map[_ >: T, _ >: T]) {}
-    def bar[T <: Number, S >: T](a: Map[S, S]) {}
-
-    val m: Map[String, Number] = ???
-
-    foo(m)
-
-    bar(m)
-  }
-
-  def test7 {
-    class CovMap[+K, +V]
-    def foo[T <: Number](a: CovMap[_ >: T, _ >: T]) {}
-    def bar[T <: Number, S >: T](a: CovMap[S, S]) {}
-    
-    val m: CovMap[String, Number] = ???
-
-    foo(m)
-
-    bar(m)
+    trait BaseNode[T <: N] extends super.BaseNode[T] {
+      def nodes: collection.mutable.Seq[NodeT]
+    }
   }
 
 }

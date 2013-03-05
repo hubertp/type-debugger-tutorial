@@ -63,7 +63,7 @@ Type inference for higher-kinded types.
  - What constraint(s) (and on which type parameters) does the typechecker collect while applying `foo` to `new Base1`?
  - Are there any other sources of constraints? If yes, name them.
  - What is the inferred type argument for `T` and does it agree with it defined bounds? If not, say why.
- - What are the bounds of the type parameter `U` and does it agree with it defined bounds? If not, say why.
+ - What is the inferred type argument for `U` and does it agree with it defined bounds? If not, say why.
 
 #### test02 ####
  - Is it possible to give type argument(s) to `bar` application, that would make the whole application correct? If yes, please state them.
@@ -77,7 +77,7 @@ Type inference for higher-kinded types.
  - What are the collected constraint(s) for `Z`?
 
 #### test04 ####
-We want to define a generic partitioning function over `Iterable` (e.g. `Seq`) 
+We want to define a generic partitioning function over `Iterable` (e.g. `Seq`) that takes a single a function which determines the split point of the collection. 
 
 ##### partition01
  - What is the type of `takeWhile` as a member of `xs`? Why?
@@ -97,7 +97,7 @@ Notice that the only difference in signature between `partition1` and `partition
 In `res2a` application:
  - Whay is the type of `res2a`?
  - What are the inferred type arguments for `T` and `CC`?
- - What is the inferred implicit argument? Where there any other competing implicits? What affects the inference of type argument for `To`?
+ - What is the inferred implicit argument? Where there any other competing implicits? What affects the inference of type argument for `To` in `CanBuildFrom` parameter?
 
 In `res2b` application:
  - Whay is the type of `res2b`?
