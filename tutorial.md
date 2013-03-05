@@ -25,6 +25,12 @@ The user interface consists of two main parts:
  - Code editor on the right
 
 The initial view of the former contains only a single node since we have not initiated any debugging yet.
+
+Let's get some example files for the tutorial (this is the repository with the sources for this tutorial):
+
+    git clone git://github.com/hubertp/type-debugger-tutorial.git
+    cd type-debugger-tutorial
+
 Start the tutorial by running **scalad** on our set of simple programs 
 
     scalad resources/code/Show.scala resources/code/FindDefinition.scala resources/code/SubtypingFun.scala
@@ -65,7 +71,7 @@ Basic goal information is as succinct as possible in order to reduce the amount 
 
 Therefore (if you selected only the `foo` method), in the above example clicking `Typecheck object member 'method foo'` will expand its parent `Can we type Test object?` as you could expect. Notice that the premise of the latter (`bar` method typechecking) is gray and typechecking for it has been omitted as it was on the direct path to the selected code.
 
-<img src ="/assets/type_debugger01.jpg"
+<img src ="{{BASE_PATH}}assets/type_debugger01.jpg"
 alt="Typechecking proof for the selected foo method" width="700" height="450"
 title="Typechecking proof for the selected foo method" class="img">
 </img>

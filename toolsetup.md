@@ -6,12 +6,12 @@ tagline: "Getting latest version"
 {% include JB/setup %}
 
 ### Setup (short version)
-Zip contains all the necessary third-party jars (including all scala-\*.jars) so the archive is pretty heavy (< 30MB)
+Zip contains all the necessary third-party jars (including all scala-\*.jars) so the archive is pretty heavy (< 30MB). Instructions on how to get it on Linux are:
 
 
     wget http://lampwww.epfl.ch/~plocinic/type-debugger-binaries/scalad-dist-snapshot.zip
     unzip scalad-dist-snapshot.zip
-    chmod a+x bin/*.sh
+    chmod a+x bin/*
     ./bin/scalad files*
 
 
