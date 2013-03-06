@@ -12,7 +12,7 @@ trait Inference02 {
     
     val res2 = fooVariation(1) _
     res2(2)
-    ()
+
   }
 
   def test02: Unit = {

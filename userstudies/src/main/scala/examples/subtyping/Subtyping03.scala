@@ -9,15 +9,8 @@ trait Subtyping03 {
     ()
   }
 
-  def test2 {
-    def foo[T](x: Map[T, _ >: T]): List[T] = ???
-    val x: Map[Number, Integer] = ???
-    val y: List[Integer] = foo(x)
-    ()
-  }
-
   def test3 {
-    def foo[T, B <: T](x: Map[T, B]): List[B] = ???
+    def foo[T, B <: T](x: Map[T, B]): List[T] = ???
     val x: Map[Number, Integer] = ???
     val y: List[Integer] = foo(x)
     ()
@@ -37,28 +30,22 @@ trait Subtyping03 {
     foo(x, y)
   }
 
-  def test6 {
-
-    def foo[T <: Number](a: Map[_ >: T, _ >: T]) {}
-    def bar[T <: Number, S >: T](a: Map[S, S]) {}
-
-    val m: Map[String, Number] = ???
-
-    foo(m)
-
-    bar(m)
-  }
-
   def test7 {
     class CovMap[+K, +V]
-    def foo[T <: Number](a: CovMap[_ >: T, _ >: T]) {}
-    def bar[T <: Number, S >: T](a: CovMap[S, S]) {}
-    
-    val m: CovMap[String, Number] = ???
+    def foo[T <: Number](a: Map[_ >: T, _ >: T]) {}
+    def bar[S <: Number](a: CovMap[_ >: S, _ >: S]) {}
 
-    foo(m)
+    val m1: Map[String, Number]     = ???
+    val m2: CovMap[String, Number]  = ???
 
-    bar(m)
+    val m3: Map[Integer, Number]    = ???
+    val m4: CovMap[Integer, Number] = ???
+
+    foo(m1)
+    bar(m2)
+
+    foo(m3)
+    bar(m4)
   }
 
 }

@@ -23,7 +23,7 @@ trait Inference01 {
   }
 
   def test03: Unit = {
-    def foo[T >: A](a: T): Unit = ()
+    def foo[T >: A <: AnyRef](a: T): Unit = ()
     val x = new C()
 
     foo(x)
