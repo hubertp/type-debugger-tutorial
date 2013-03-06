@@ -10,13 +10,9 @@ trait Implicits14 {
     val lList: LinkedList[Int] = ???
     val bSet: BitSet           = ???
 
-    val a = lList map (_ + 1)
-
-    val b = bSet map (_ + 1)
-
-    val c = lList map (_.toFloat)
+    val a = lList map (_.toFloat)
     
-    val d = bSet map (_.toFloat)
+    val b = bSet map (_.toFloat)
   }
 
 }

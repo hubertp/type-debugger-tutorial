@@ -5,22 +5,16 @@ title: "Questions: Subtyping"
 {% include JB/setup %}
 
 ### Subtyping01 (source at *subtyping/Subtyping01.scala*)
-For each of the applications in `test* (arg*)` please answer the following questions:
- - Is the application type correct?
- - If it is not, please state the final subtyping relation that could not be satisfied.
- - If it is, please state all final subtyping checks between base types. e.g. `Map[A, B] <: Map[C, D]` it would be `A <: C`, `C <: A` and `B <: D`.
+Each of the following applications is reported as an error by typechecker. Please state the final subtyping relation between types which could not be satisfied e.g. `Map[String, Number] <: Map[Int, Number]` it would be `String <: Int`.
 
  Answers:
 
- - test1:
  - test2:
- - test3: 
- - test4:
- - test5:
  - test6:
  - test7:
  - test8:
 
+<!---
 ### Subtyping02 (source at *subtyping/Subtyping02.scala*)
 For each of the applications of `m*` please answer the following questions:
  - Is the application type correct?
@@ -36,32 +30,31 @@ Answers:
  - m4:
  - m4:
  - m5:
-
+-->
 
 
 ### Subtyping03 (source at *subtyping/Subtyping03.scala*)
 
 ### test1 ###
- - How was the type argument `T` inferred in application `foo`?
- - How was the type argument `B` inferred in application `foo`?
- - Why does it not infer `T` to be equal to `B`?
+ - What is the inferred type argument for `B`? Why?
 
 ### test3 ###
- - Why cannot the compiler infer the type argument for `T` to be of type `Integer`?
- - How does the expected type of `y` affect the inference of type arguments in this application?
+ - What is the inferred type argument for `B`? Why?
+ - Does the type of `y` affect the inference of type arguments in this application?
 
 ### test4 ###
  - What constraints are taken into account while inferring type argument for `T` in application `foo(x, y)`?
  - What constraints are taken into account while inferring type argument for `S` in application `foo(x, y)`?
- - How did the compiler came up with the complicated type involving `Serializable` for `T`?
+ - Why is the inferred type argument for `T` `Serializable`?
  - Why is the type argument for `S` not inferred as `Serializable` as well?
- - Why is the inferred type argument for `S` simply not `Any`?
+ - Why is the inferred type argument for `S` not `Any`?
 
+<!---
 ### test5 ###
  - Why is the inferred type argumnet for `T` in the `foo(x, y)` application now different?
  - Why is the inferred type argument for `S` in the `foo(x, y)` application now different?
  - Why application of `foo` to `x` and `y` now typechecks but it didn't typecheck in the previous test?
-
+-->
 <!---
 ### test6 ###
  - What are the constraints (and their sources) on the type of `T`?
@@ -73,13 +66,15 @@ Answers:
 
 <!--- todo, a bit more tracking regarding existentials -->
 ### test7 ###
- - Map is invariant in the first type parameter and covariant in the second one. How does this affect constraints that the compiler will use to infer type argument `T` in the application `foo(m1)`?
- - What is the inferred type argument for `T`? 
- - CovMap is covariant in both type parameters. How does this affect the constraints that the compiler will use to infer type argument `S` in the application `bar(m2)`?
- - What is the inferred type argument for `S`? 
+ Map is invariant in the first type parameter and covariant in the second one. CovMap is covariant in both type parameters. 
 
- - Does the type of the keys (`Integer`) of the `m3` `Map` affect the inferred type argument `T` in the application?
- - Does the type of the keys (`Integer`) of the `m4` `Map` affect the inferred type argumnet `S` in the application?
+ - What type constraints affect the inference of type argument `T` in the application `foo(m1)`?
+ - What is the inferred type argument for `T` and why? (explain in relation to your previous answer)?
+ - What type constraints affect the inference of type argument `S` in the application `bar(m2)`?
+ - What is the inferred type argument for `S` and why? (explain in relation to your previous answer)?
+
+ - Does the type of the keys (`Integer`) of `m3`'s `Map` affect the inferred type argument `T` in the application? Why?
+ - Does the type of the keys (`Integer`) of `m4`'s `Map` affect the inferred type argument `S` in the application? Why?
 
 
 <!---

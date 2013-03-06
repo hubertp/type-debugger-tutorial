@@ -16,13 +16,6 @@ trait Inference03 {
     def foo[U <: B[T], T <: A]( param: U ): Unit = ()
     
     foo(new Base)
-    
-    ()
-  }
-
-  
-
-  def test02 {
 
     def bar[U[T0 <: A] <: B[T0], T <: A]( param: U[T] ): Unit = ()
 
@@ -30,6 +23,9 @@ trait Inference03 {
     
     ()
   }
+
+  
+
 
   def test04 {
     val seq = Seq(1,2,3)

@@ -48,11 +48,8 @@ trait Implicits13 {
 
     val xs = List(5,2,6)
 
-    //Q : what is the type of set1? Why 
     val set1 = SortedSet.empty[Int] ++ xs
-
-    //Q : what is the type of set1? Why 
-    //Q : where does the diverging implicit come from   
+ 
     val set2 = SortedSet.empty ++ xs
 
 

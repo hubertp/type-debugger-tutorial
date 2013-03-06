@@ -56,19 +56,6 @@ trait Implicits07 {
     implicit def vertical2Horizontal(v: Vertical): Horizontal = ???
   }
 
-  def test02 {
-    import SizeScale2._
-
-    val h = new Horizontal(10)
-    val v = new Vertical(10)
-    val s = new Size(2, 4)
-
-    def onInvalid(x: Invalid.type) = ()
-
-    onInvalid(s.scale(h))
-
-    onInvalid(1.scale(h))
-  }
 }
 
 trait Implicits08 {

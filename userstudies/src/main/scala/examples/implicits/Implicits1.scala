@@ -38,29 +38,6 @@ trait Implicts02 {
   }
 }
 
-trait Implicts03 {
-  trait Store[+T] {
-    def get(): T
-  }
-
-  object Helpers {
-    implicit val firstImplicit: Store[AnyVal] = ???
-  }
-
-  object UnderstandingScopes {
-
-    def test01() {
-      import Helpers._
-
-      implicit val secondImplicit: Store[Int] = ???
-
-      foo(1)
-    }
-
-    def foo[A](v: A)(implicit tc: Store[A]) = tc.get()
-
-  }
-}
 
 trait Implicts04 {
 

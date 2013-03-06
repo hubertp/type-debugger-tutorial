@@ -58,7 +58,7 @@ trait Implicits06 {
 
 
   def test01 {
-    implicit val someImpl: GAction[Int, Int] = ????
+    implicit val someImpl: GAction[Int, Int] = ???
 
     foo(1)
     foo(1.0)

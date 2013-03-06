@@ -2,41 +2,16 @@ package inference
 
 trait OverloadedResolution {
 
-
-  def test01 {
-
-    class Test {
-      def foo(arg: Any) {}     // 1
-      def foo(arg: Int) {}     // 2
-      def foo(arg: AnyRef) {}  // 3
-    }
-
-    val t = new Test()
-    t.foo(1)      // A
-    t.foo("abc")  // B
-  }
-
   def test02 {
 
     class Ambiguous {
       def foo(x: Any, y: Int) {} // 1
-      def foo(x: Int, y: Int) {} // 2
+      def foo(x: Long, y: Int) {} // 2
     }
 
     val t = new Ambiguous()
     t.foo(1, 2)    // A
-    t.foo(1.0, 2)  // B
-  }
-
-  def test03 {
-    class Calculation {
-      def square(x: Double) {}   // 1
-      def square(y: Float) {}    // 2
-    }
-
-    val c = new Calculation()
-    c.square(1)    // A
-    c.square(1.0)  // B
+    t.foo('c', 2)  // B
   }
 
   def test04 {
@@ -92,41 +67,6 @@ trait OverloadedResolution {
     val t = new Base()
     t.foo(1, 2)     // A
     t.foo(1, 2.0)   // B
-  }
-
-  def test07 {
-    class Base {
-      def foo(x: Base) {}      // 1
-    }
-
-    class SubBase extends Base {
-      def foo(x: SubBase) {}   // 2
-    }
-
-    val x = new Base()
-    val y = new SubBase()
-
-    val t = new SubBase()
-    t.foo(x)   // A
-    t.foo(y)   // B
-  }
-
-  def test08 {
-
-    class Base {
-      def foo(x: SubBase) {}    // 1
-    }
-
-    class SubBase extends Base {
-      def foo(x: Base) {}       // 2
-    }
-
-    val x = new Base()
-    val y = new SubBase()
-
-    val t = new SubBase()
-    t.foo(x)  // A
-    t.foo(y)  // B
   }
 
   def test09 {

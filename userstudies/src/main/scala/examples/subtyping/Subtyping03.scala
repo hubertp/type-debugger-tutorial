@@ -23,13 +23,6 @@ trait Subtyping03 {
     foo(x, y)
   }
 
-  def test5 {
-    def foo[T, S](x: Map[_ <: T, S], y: Map[_ <: T, S]) {}
-    val x: Map[Number, String] = ???
-    val y: Map[Integer, String] = ???
-    foo(x, y)
-  }
-
   def test7 {
     class CovMap[+K, +V]
     def foo[T <: Number](a: Map[_ >: T, _ >: T]) {}

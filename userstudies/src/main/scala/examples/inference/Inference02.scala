@@ -28,15 +28,4 @@ trait Inference02 {
     res5(2)
     ()
   }
-
-  def test03: Unit = {
-
-    def bar1[T <: X, X](a: X)(b: T): X = a
-
-    val res6 = bar1(1) _
-    res6(2)
-
-    ()
-
-  }
 }
