@@ -19,10 +19,17 @@ title: "Questions: Type inference"
  - Where does the expected type come from?
  - How was the expected type inferred?
 
-#### test03 ####
- - Name *all* constraints (and their sources) that are taken into account while inferring type argument `T`.
- - Do we calculate *least upper bound* or *greatest lower bound* of those constraint(s) to infer type argument `T`?
- - What type argument is inferred for `T`?
+#### test04 ####
+ 
+ - What is the type of the *then* branch in conditional for `a`?
+ - What is the type of the *else* branch in conditional for `a`?
+ - What is the type of `a`? Explain in terms of finding *least upper bound* and/or *greatest lower bound*.
+
+#### test05 ####
+ - What is the type of `b`? Explain in terms of finding *least upper bound* and/or *greatest lower bound*.
+
+#### test06 ####
+ - What is the type of `c`? Explain in terms of finding *least upper bound* and/or *greatest lower bound*.
 
 <!-- - -->
 
@@ -35,7 +42,7 @@ Let's have some fun with Nothing and some of the limitations of type inference.
   a) at assignment to `res1`
   b) at application `res1(2)`?
  - What is the type of the expression `res1`?
- - While infering `T` in `foo` what are the constraints on the type parameter that inferencer uses?
+ - Why does the typechecker infer `Nothing` as type argument for `T`?
  - Why does the typechecker not infer `Any` instead of `Nothing` as type argument for `T` in this situation?
  - `foo` is a function. Yet it is partially applied and assigned to a value. What does the typechecker do for that to be possible?
 
@@ -67,8 +74,8 @@ Compare almost identical definitions of functions `foo` and `bar`. Their usage (
  - Is it possible to give type arguments to `foo` application, that would make the whole application correct? If yes, please state them.
  - What constraint(s) will the typechecker collect on type parameter `T` while applying `foo` to `new Base`?
  - What constraint(s) will the typechecker collect on type parameter `U` while applying `foo` to `new Base`?
- - What is the inferred type argument for `T` and does it agree with it defined bounds? If not, say why.
- - What is the inferred type argument for `U` and does it agree with it defined bounds? If not, say why.
+ - Why is the inferred type argument for `T` `Nothing`?
+
 
  - What constraint(s) will the typechecker collect on type parameter `T` while applying `bar` to `new Base`?
  - What constraint(s) will the typechecker collect on type constructor `U` while applying `bar` to `new Base`?
@@ -76,6 +83,11 @@ Compare almost identical definitions of functions `foo` and `bar`. Their usage (
 
 <!--- - If we drop `T0 <: A` bound, can we still infer correct type arguments? Why? -->
 
+#### test02 ####
+ - Array has no members `toList` and `toSet`. Which implicit views are found so that the expression typecheck for:
+ a) `a.toList`
+ b) `a.toSet`
+ - Why does the **A** expression not require the type of the parameter but **B** does?
 
 <!---
 #### test03 ####
@@ -91,8 +103,7 @@ Compare almost identical definitions of functions `foo` and `bar`. Their usage (
 We want to define a generic partitioning function over `Iterable` (e.g. `Seq`) that takes a collection and a function which determines the split point of the collection. 
 
 ##### partition01
- - What is the type of `takeWhile` as a member of `xs`? Why?
- - What is the type of `p1`? Why?
+ - Compiler reports a type mismatch for the last tuple containing `p1` and `p2`. Why is the type of `p1` inferred to be `Iterable[T]` ant not `CC[T]`?
 
 <!---
 ##### partition02
@@ -112,7 +123,7 @@ Notice that the only difference in signature between `partition1` and `partition
  - We do not provide the implicit argument for `cbf` directly therefore the compiler will have to infer it. Compiler will search for an implicit argument of what type?
  - What is the inferred implicit argument for parameter `cbf`?
  - Were there any other implicits which would be also suitable as implicit arguments in the application of `partition3`? If yes, name one.
- - What affects the inference of type argument for `To` in `CanBuildFrom` parameter?
+ - How is the type argument for `To` in `CanBuildFrom` parameter inferred?
 
 <!---
 In `res2b` application:
@@ -131,19 +142,3 @@ In `res2b` application:
  - What are the constraint(s) that the compiler will use to infer the type for `S`, what type will it infer?
  - Could the compiler infer `R[Nothing]` or `R[Any]` for `S`? Why?
 -->
-### Inference05 (source at *inference/Inference05.sala*) ###
-
-<!--- add to easy questions -->
-#### test01 ####
- 
- - What is the type of the *then* branch in conditional for `a`?
- - What is the type of the *else* branch in conditional for `a`?
- - What is the type of `b`? Explain in terms of finding *least upper bound* and/or *greatest lower bound*.
-
-#### test03 ####
- - What is the type of `c`? Explain in terms of finding *least upper bound* and/or *greatest lower bound*.
-
-#### test04 ####
- - What is the type of `d`? Explain in terms of finding *least upper bound* and/or *greatest lower bound*.
-
-

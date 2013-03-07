@@ -24,8 +24,14 @@ trait Inference03 {
     ()
   }
 
-  
+  def test02 {
+    val a = Array(1,2) 
 
+    a.toList.map(x => x)  // A
+
+    a.toSet.map(x => x)   // B
+
+  }
 
   def test04 {
     val seq = Seq(1,2,3)

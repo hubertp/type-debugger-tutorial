@@ -107,7 +107,6 @@ trait OverloadedResolution {
     c.foo(new B())  // A
 
     val d = new D()
-    d.bar(new A())  // B
     d.bar(new B())  // C
 
   }
@@ -130,10 +129,8 @@ trait OverloadedResolution {
     val c = new Bar()
 
     c.foo(1, 2.0)   // A
-    c.foo(1, 1)     // B
 
-    c.bar(1, 2.0)   // C
-    c.bar(1, 1)     // D
+    c.bar(1, 2.0)   // B
   }
 
 }

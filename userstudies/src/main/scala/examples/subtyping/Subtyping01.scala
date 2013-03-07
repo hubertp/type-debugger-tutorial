@@ -17,8 +17,8 @@ trait Subtyping01 {
   abstract class Base {
     class Inner
   }
-  class Op1 extends Base
-  val a = new Op1
+  class Ext extends Base
+  val a = new Ext
 
   def test2(f: Record2[U, T] => T)                    = ???
   def test6(f: ((S => Record1[T]) => S) => Any)       = ???

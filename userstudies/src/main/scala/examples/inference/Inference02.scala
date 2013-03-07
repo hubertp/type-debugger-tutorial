@@ -24,8 +24,5 @@ trait Inference02 {
 
     def bop[X, T <: X](a: X)(b: T): T = b
 
-    val res5 = bop(1) _
-    res5(2)
-    ()
   }
 }

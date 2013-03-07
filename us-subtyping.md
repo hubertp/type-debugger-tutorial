@@ -37,6 +37,7 @@ Answers:
 
 ### test1 ###
  - What is the inferred type argument for `B`? Why?
+- Does the type of `y` affect the inference of type arguments in this application?
 
 ### test3 ###
  - What is the inferred type argument for `B`? Why?
@@ -68,10 +69,10 @@ Answers:
 ### test7 ###
  Map is invariant in the first type parameter and covariant in the second one. CovMap is covariant in both type parameters. 
 
- - What type constraints affect the inference of type argument `T` in the application `foo(m1)`?
- - What is the inferred type argument for `T` and why? (explain in relation to your previous answer)?
- - What type constraints affect the inference of type argument `S` in the application `bar(m2)`?
- - What is the inferred type argument for `S` and why? (explain in relation to your previous answer)?
+ - What type constraints affect the inference of type argument for `T` in the application `foo(m1)`?
+ - What is the inferred type argument for `T` and why? (explain using your answer to the previous question)?
+ - What type constraints affect the inference of type argument for `S` in the application `bar(m2)`?
+ - What is the inferred type argument for `S` and why? (explain using your answer to the previous question)?
 
  - Does the type of the keys (`Integer`) of `m3`'s `Map` affect the inferred type argument `T` in the application? Why?
  - Does the type of the keys (`Integer`) of `m4`'s `Map` affect the inferred type argument `S` in the application? Why?
