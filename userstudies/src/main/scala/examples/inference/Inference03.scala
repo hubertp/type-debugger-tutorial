@@ -4,36 +4,8 @@ import scala.collection.{ Iterable, IterableLike }
 import scala.collection.generic.CanBuildFrom
 
 trait Inference03 {
-  abstract class A
-  abstract class B[T <: A]
-  class C extends A
-
-  class Base extends B[C]
-  
 
   def test01 {
-
-    def foo[U <: B[T], T <: A]( param: U ): Unit = ()
-    
-    foo(new Base)
-
-    def bar[U[T0 <: A] <: B[T0], T <: A]( param: U[T] ): Unit = ()
-
-    bar(new Base)
-    
-    ()
-  }
-
-  def test02 {
-    val a = Array(1,2) 
-
-    a.toList.map(x => x)  // A
-
-    a.toSet.map(x => x)   // B
-
-  }
-
-  def test04 {
     val seq = Seq(1,2,3)
 
     def partition1[T, CC[X] <: Iterable[X]](xs: CC[T])
@@ -43,7 +15,7 @@ trait Inference03 {
         (p1, p2)
     }
 
-    def partition3[T, CC[X] <: Iterable[X], To](xs: CC[T])
+    def partition2[T, CC[X] <: Iterable[X], To](xs: CC[T])
       (cond: T => Boolean)(implicit cbf: CanBuildFrom[CC[_], T, To]): (To, To) = {
       
       val bd1 = cbf()
@@ -64,4 +36,6 @@ trait Inference03 {
     val res2a = partition3(seq)(_ > 2)
 
   }
+
+
 }

@@ -1,19 +1,5 @@
 package implicits
 
-trait Implicits01 {
-  class A
-  class B
-
-  def test01 {
-    implicit def int2B(x: Int): B = new B
-
-    val a: A = 0
-    val b: B = 1
-    ()
-  }
-
-}
-
 trait Implicts02 {
   trait Value[-T] {
     def apply(x: T): String
@@ -23,18 +9,16 @@ trait Implicts02 {
     implicit val thirdImplicit: Value[Int] = ???
   }
 
-
   object UnderstandingScopes {
     implicit val firstImplicit: Value[AnyVal] = ???
+
+    def foo[A](v: A)(implicit tc: Value[A]) = tc(v)
 
     def test01() {
       implicit val secondImplicit: Value[Int] = ???
 
       foo(1)
     }
-
-    def foo[A](v: A)(implicit tc: Value[A]) = tc(v)
-
   }
 }
 
@@ -65,26 +49,117 @@ trait Implicts04 {
   def multiplyMe[A, B, C](x: A, b: B)(implicit c: MultiplicationComp[A, B, C]): C =
     c.compute(x, b)
 
-  def test() {
+  def test {
 
     val m = new Matrix {}
     val v = new Vector {}
     val i = 1
-    val j = 1.0
+    val j = 1L
 
     multiplyMe(m, m): Matrix // 1
-    multiplyMe(v, m): Matrix // 2
+    multiplyMe(m, m)         // 2
     multiplyMe(m, v): Vector // 3
     multiplyMe(m, v): Matrix // 4
-    multiplyMe(m, i): Matrix // 5
-    multiplyMe(m, i): Vector // 6
-    multiplyMe(m, j): Matrix // 7
+    multiplyMe(m, i)         // 5
+    multiplyMe(m, j)         // 6
+  }
 
-    multiplyMe(m, m)         // 8
-    multiplyMe(m, v)         // 9
-    multiplyMe(v, m)         // 10
-    multiplyMe(m, i)         // 11
-    multiplyMe(m, j)         // 12
+}
+
+trait Implicits05 {
+  class A { def f: Any }
+  class B extends A { def f: Int = 5 }
+  class C extends A { def f: Long = 5L }
+
+  def universalComp[T](t1: T, t2: T)(implicit evidence: Ordering[T]) = 1
+
+  implicit val aOrdering: Ordering[A] = ???
+  
+  def test01 {
+    universalComp(new B, new C)
+  }
+
+  def test02 {
+    universalComp(1, 2)
+  }
+}
+
+trait Implicits10 {
+
+  trait SumTuple3 extends Tuple3[Int, Int, Int] {
+    def sum: Int
+  }
+
+  object ChainImplicits {
+    implicit def intToT1(x: Int): Tuple1[Int] = ???
+    implicit def t1ToT2[T](prev: T)(implicit toT1: T => Tuple1[Int]): Tuple2[Int, Int] = ???
+    implicit def t2ToT3[T](prev: T)(implicit toT2: T => Tuple2[Int, Int]): SumTuple3 = ???
+  }
+
+  def test02 {
+    import ChainImplicits._
+
+    1.sum
+
+    (2,5).sum
+    
+    (1,2,3).sum
+
+  }
+}
+
+trait Implicits13 {
+
+  def test01 {
+
+    implicit def transitive[A, B, C](implicit f: A => B, g: B => C): A => C = f andThen g
+
+    implicit def pre2Main(f: PreProcess): Main = ???
+    implicit def main2Final(f: Main): Final    = ???
+
+    abstract class Action
+
+    case class PreProcess(x: Int) extends Action
+    case class Main(y: Int, factor: Int) extends Action
+    case class Final(res: Int) extends Action {
+      def product(): Int = ???
+    }
+
+    def doWork(v: PreProcess)(implicit process: PreProcess => Final): Int = 
+      process(v).product()
+
+    doWork(PreProcess(21))
+
+  }
+
+
+  def test02 {
+    class Foo(val x: Int) extends Ordered[Foo] {
+      def compare(that: Foo): Int = ???
+    }
+
+    class Bar(val id: String, x: Int) extends Foo(x) 
+
+
+    val listOfFoo: List[Foo] = ???
+    val listOfBar: List[Bar] = ???
+    
+    listOfFoo.sorted
+
+    listOfBar.sorted
+  }
+
+
+  def test03 {
+
+    import scala.collection.immutable.SortedSet
+
+    val xs = List(5,2,6)
+
+    val set1 = SortedSet.empty[Int] ++ xs
+ 
+    val set2 = SortedSet.empty ++ xs
+
   }
 
 }

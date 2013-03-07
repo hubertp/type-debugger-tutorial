@@ -47,7 +47,5 @@ trait Implicits11 {
 
     "abc".repeats('a')
 
-    val x: Int = 'a'
-    s.repeats(1)
   }
 }

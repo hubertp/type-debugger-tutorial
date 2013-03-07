@@ -37,15 +37,15 @@ Answers:
 
 ### test1 ###
  - What is the inferred type argument for `B`? Why?
-- Does the type of `y` affect the inference of type arguments in this application?
+- Does the type annotation of `y` affect the inference of type arguments in this application?
 
 ### test3 ###
  - What is the inferred type argument for `B`? Why?
  - Does the type of `y` affect the inference of type arguments in this application?
 
 ### test4 ###
- - What constraints are taken into account while inferring type argument for `T` in application `foo(x, y)`?
- - What constraints are taken into account while inferring type argument for `S` in application `foo(x, y)`?
+ - What constraints on `T` are taken into account while inferring type argument in application `foo(x, y)`?
+ - What constraints on `S` are taken into account while inferring type argument in application `foo(x, y)`?
  - Why is the inferred type argument for `T` `Serializable`?
  - Why is the type argument for `S` not inferred as `Serializable` as well?
  - Why is the inferred type argument for `S` not `Any`?

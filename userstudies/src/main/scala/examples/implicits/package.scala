@@ -1,9 +1,6 @@
 package object implicits {
-  implicit val packageObjectAction: Action[Int] = new Action[Int] {
-    def apply(x: Int): String = ???
-  }
 
-  implicit val packageObjectGAction: GAction[Int, Any] = new GAction[Int, Any] {
+  implicit val packageObjectFAction: FAction[Int, Any] = new FAction[Int, Any] {
     def apply(x: Int): Any = ???
     def retrieve: Any = ???
   }

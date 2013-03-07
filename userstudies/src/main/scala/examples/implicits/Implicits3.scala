@@ -57,21 +57,3 @@ trait Implicits07 {
   }
 
 }
-
-trait Implicits08 {
-  class A { def f: Any }
-  class B extends A { def f: Int = 5 }
-  class C extends A { def f: Long = 5L }
-
-  def universalComp[T](t1: T, t2: T)(implicit evidence: Ordering[T]) = 1
-
-  implicit val aOrdering: Ordering[A] = ???
-  
-  def test01 {
-    universalComp(new B, new C)
-  }
-
-  def test02 {
-    universalComp(1, 2)
-  }
-}

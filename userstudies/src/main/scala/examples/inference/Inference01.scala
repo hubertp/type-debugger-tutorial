@@ -38,8 +38,4 @@ trait Inference01 {
     val b = if (cond) new C else new D
   }
 
-  def test06(cond: Boolean): Unit = {
-    val c = if (cond) new java.lang.Integer(1) else new java.lang.Double(2)
-  }
-
 }

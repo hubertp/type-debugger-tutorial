@@ -37,7 +37,7 @@ trait Implicits13 {
 
     val listOfFoo: List[Foo] = ???
     val listOfBar: List[Bar] = ???
-
+    
     listOfFoo.sorted
 
     listOfBar.sorted
