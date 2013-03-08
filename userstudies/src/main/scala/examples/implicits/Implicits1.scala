@@ -1,29 +1,59 @@
 package implicits
 
-trait Implicts02 {
-  trait Value[-T] {
-    def apply(x: T): String
+trait Implicts01 {
+  trait Value[+T]
+
+  trait Product { }
+
+  trait Car extends Product {
   }
 
-  trait PimpedValue[-T] extends Value[T] {
-    implicit val thirdImplicit: Value[Int] = ???
+  object Car {
+    implicit val firstImplicit: Value[Car] = ???
+    implicit val secondImplicit: Value[AnyRef] = ???
+  }
+
+  trait SportsCar extends Car { }
+
+  object SportsCar {
+    implicit val thirdImplicit: Value[SportsCar] = ???
+  }
+
+
+  abstract class Producer {
+    type Provides <: Product
+
+    def produce(p: Value[Provides]): String = ???
+  }
+  object Producer {
+    implicit val fourthImplicit: Value[Product] = ???
+  }
+
+  abstract class CarProducer extends Producer {
+    type Provides <: Car
+  }
+
+  object CarProducer {
+    implicit val fifthImplicit: Value[SportsCar] = ???
+  }
+
+  class SportsCarProducer extends CarProducer {
+    type Provides = SportsCar
   }
 
   object UnderstandingScopes {
-    implicit val firstImplicit: Value[AnyVal] = ???
+    implicit val sixthImplicit: Value[List[SportsCar]] = ???
 
-    def foo[A](v: A)(implicit tc: Value[A]) = tc(v)
+    def foo[A <: Producer](v: A)(implicit tc: Value[v.Provides]) = v.produce(tc)
 
     def test01() {
-      implicit val secondImplicit: Value[Int] = ???
-
-      foo(1)
+      foo(new SportsCarProducer)
     }
   }
 }
 
 
-trait Implicts04 {
+trait Implicts02 {
 
   trait Matrix
   trait Vector
@@ -66,15 +96,17 @@ trait Implicts04 {
 
 }
 
-trait Implicits05 {
+trait Implicits03 {
   class A { def f: Any }
   class B extends A { def f: Int = 5 }
   class C extends A { def f: Long = 5L }
 
+  object A {
+    implicit val aOrdering: Ordering[A] = ???  
+  }
+
   def universalComp[T](t1: T, t2: T)(implicit evidence: Ordering[T]) = 1
 
-  implicit val aOrdering: Ordering[A] = ???
-  
   def test01 {
     universalComp(new B, new C)
   }
@@ -96,7 +128,7 @@ trait Implicits10 {
     implicit def t2ToT3[T](prev: T)(implicit toT2: T => Tuple2[Int, Int]): SumTuple3 = ???
   }
 
-  def test02 {
+  def test01 {
     import ChainImplicits._
 
     1.sum
@@ -108,7 +140,7 @@ trait Implicits10 {
   }
 }
 
-trait Implicits13 {
+trait Implicits05 {
 
   def test01 {
 

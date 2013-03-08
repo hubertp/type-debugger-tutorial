@@ -6,7 +6,7 @@ import scala.language.reflectiveCalls
 
 trait OverloadedResolution {
 
-  def test04 {
+  def test01 {
 
     class Base {
 
@@ -34,7 +34,7 @@ trait OverloadedResolution {
 
   }
 
-  def test06 {
+  def test02 {
 
     class Base {
       def foo(x: Int, y: Double, z: Int = 0) {}  // 1
@@ -45,7 +45,7 @@ trait OverloadedResolution {
     t.foo(1, 2)
   }
 
-  def test10 {
+  def test03 {
     class A
     class B extends A
 
@@ -69,7 +69,7 @@ trait OverloadedResolution {
 
   }
 
-  def test11 {
+  def test04 {
     abstract class Base[T] {
       def v: T
     }
@@ -106,7 +106,7 @@ trait OverloadedResolution {
     }
   }
 
-  def test12 {
+  def test05 {
     class Base[T]
     class NatA[T] extends Base[T]
     class NatB[T] extends Base[T]
