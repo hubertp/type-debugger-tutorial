@@ -30,9 +30,11 @@ trait OverloadedResolution {
 
     t.square(x)   // A
 
-    t.root(x)     // C
+    t.root(x)     // B
 
   }
+
+// -----------------------------------------------------
 
   def test02 {
 
@@ -44,6 +46,10 @@ trait OverloadedResolution {
     val t = new Base()
     t.foo(1, 2)
   }
+
+
+// -----------------------------------------------------
+
 
   def test03 {
     class A
@@ -61,13 +67,16 @@ trait OverloadedResolution {
     }
 
     val c = new C()
- 
     c.foo(new B())  // A
 
     val d = new D()
-    d.bar(new B())  // C
+    d.bar(new B())  // B
 
   }
+
+
+// -----------------------------------------------------
+
 
   def test04 {
     abstract class Base[T] {
@@ -105,6 +114,10 @@ trait OverloadedResolution {
       c.foo(b)   // B
     }
   }
+
+
+// -----------------------------------------------------
+
 
   def test05 {
     class Base[T]

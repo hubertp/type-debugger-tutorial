@@ -9,10 +9,10 @@ Each of the following applications is reported as an error by typechecker. Pleas
 
  Answers:
 
+ - test1:
  - test2:
- - test6:
- - test7:
- - test8:
+ - test3:
+ - test4:
 
 ### Subtyping02
 

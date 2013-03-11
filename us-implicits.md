@@ -6,16 +6,15 @@ title: "Questions: Implicit search"
 
 
 ### Implicits01 ###
- - What is the inferred type of `A` in `foo(1)` application?
  - While searching for the argument for implicit parameter `tc`, are each of the following implicits `firstImplicit`, `secondImplicit`, `thirdImplicit`, `fourthImplicit`, `fifthImplicit` and `sixthImplicit` in the implicit search scope?
  - Which implicit has been applied as an implicit argument for `tc`?
- - Is there more than one implicit that the compiler verified to be applicable for that position? If so, why was the you mentioned in the previous question selected?
+ - Is there more than one implicit that the compiler verified to be applicable for that position? If so, why was the one you mentioned above selected?
 
 
 ### Implicits02 ###
 In this example we would like to use implicits to safely do matrix-matrix, matrix-vector etc. products. The test provides multiple combinations (not all of them making sense).
 
-Your task is to say which of the implicits in `MultiplicationComp` are verified by the compiler to be correct as arguments for implicit parameter `c` in `multiplyMe` applcation. If there is more than one applicable, specify how does the typechecker select the most specific one or why it is not able to (on failure).
+Your task is to say which of the implicits in `MultiplicationComp` are verified by the compiler to be correct as arguments for implicit parameter `c` in `multiplyMe` application. If there is more than one applicable, specify how does the typechecker select the most specific one or why it is not able to (on failure).
 
 Questions:
  - Why cannot it resolve ambiguity in 2) but succeeded in 1)
@@ -27,12 +26,12 @@ Questions:
 #### test01
 - What type is inferred for `T` in the first `universalComp` application?
 - Is `aOrdering` in scope? If yes, why is it not picked by the implicit search?
-- There will be other implicits that the compiler will try base on the inferred type argument. Name them.
+- There will be other implicits that potentially apply as implicit arguments but compiler will (correctly) fail to typecheck them. Name them.
 - How would you fix the type error?
 
 #### test02
 - How many implicits are verified by the compiler to be compatible with the search type for the implicit parameter?
-- If there is more than one, name them and explain why there is no amiguity.
+- If there is more than one, name them and explain why there is no ambiguity.
 - What is the implicit argument that the compiler applied to the application?
 
 ### Implicits04
@@ -40,7 +39,7 @@ Tests that follow experiment with chaining the implicits.
 
 #### test01
  - Is there a direct implicit view of type `Int => SumTuple3` (in order for the selection `1.sum` to succeed)?
- - During the very first tried implicit conversion in the member selection, which implicit(s) a verified by the compiler for the qualifier `1` (so that it has a member `sum`)?
+ - During the very first tried implicit conversion in the member selection, which implicit(s) are verified by the compiler for the qualifier `1` (so that it has a member `sum`)?
  - What implicits (and in what sequence) are used in order to satisfy it?
 
  - Which implicit(s) are being verified by the compiler during the first implicit conversion of`(2, 5)`?

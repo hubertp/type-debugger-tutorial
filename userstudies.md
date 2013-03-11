@@ -44,7 +44,7 @@ Questions (*this will be changed to the online-survey that does all the timing, 
 
  - [Subtyping]({{BASE_PATH}}us-subtyping.html)
  - [Inference]({{BASE_PATH}}us-inference.html)
- - [Overload resolution]({{BASE_PATH}}us-overload.html)
+ - [Overloading resolution]({{BASE_PATH}}us-overload.html)
  - [Implicit search]({{BASE_PATH}}us-implicits.html)
 
 [examplesSource]: https://github.com/hubertp/type-debugger-tutorial/tree/master/userstudies

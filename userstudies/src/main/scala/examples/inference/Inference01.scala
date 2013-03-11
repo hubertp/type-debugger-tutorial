@@ -24,6 +24,8 @@ trait Inference01 {
     ()
   }
 
+  // --------------------
+
   def test02(cond: Boolean): Unit = {
     class C
     class D
@@ -32,6 +34,8 @@ trait Inference01 {
     
     val a = if (cond) ((x: C) => new D) else ((x: E) => new F)
   }
+
+  // --------------------
   
   def test03(cond: Boolean): Unit = {
     abstract class A { type T }
@@ -40,6 +44,8 @@ trait Inference01 {
     
     val b = if (cond) new C else new D
   }
+
+  // --------------------
 
   def test04 {
 
@@ -55,6 +61,7 @@ trait Inference01 {
 
   }
 
+  // --------------------
 
   def test05 {
     abstract class A
@@ -75,6 +82,8 @@ trait Inference01 {
     
     ()
   }
+
+  // --------------------
 
   def test06 {
     val seq = Seq(1,2,3)
@@ -107,6 +116,8 @@ trait Inference01 {
     val res2a = partition2(seq)(_ > 2)
 
   }
+
+  // --------------------
 
   def test07 {
     import scala.collection.BitSet

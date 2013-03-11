@@ -60,7 +60,7 @@ Notice that the only difference in signature between `partition1` and `partition
  - What are the inferred type arguments for `T` and `CC`?
  - We do not provide the implicit argument for `cbf` directly therefore the compiler will have to infer it. Compiler will search for an implicit argument of what type?
  - What is the inferred implicit argument for parameter `cbf`?
- - Were there any other implicits which would be also suitable as implicit arguments in the application of `partition3`? If yes, name one.
+ - Were there any other implicits which would be also suitable as implicit arguments in the application of `partition2`? If yes, name one.
  - How is the type argument for `To` in `CanBuildFrom` parameter inferred?
 
 

@@ -20,24 +20,28 @@ trait Subtyping01 {
   class Ext extends Base
   val a = new Ext
 
-  def test2(f: Record2[U, T] => T)                    = ???
-  def test6(f: ((S => Record1[T]) => S) => Any)       = ???
-  def test7(f: Record1[S] MyFun Record1[U])    = ???
-  def test8(f: Set[Base#Inner] => (Any => Int)) = ???
+  def test1(f: Record2[U, T] => T)                    = ???
+  def test2(f: ((S => Record1[T]) => S) => Any)       = ???
+  def test3(f: Record1[S] MyFun Record1[U])    = ???
+  def test4(f: Set[Base#Inner] => (Any => Int)) = ???
 
   def test {
-    val arg2: Record2[S, U] => S = ???
-    val arg6: (T => Record2[S, S]) => T              = ???
-    val arg7: Record1[T] MyFun Record2[V, U]  = ???
-    val arg8: Set[a.Inner] => (Int => Nothing)  = ???
+    val arg1: Record2[S, U] => S = ???
+    val arg2: (T => Record2[S, S]) => T              = ???
+    val arg3: Record1[T] MyFun Record2[V, U]  = ???
+    val arg4: Set[a.Inner] => (Int => Nothing)  = ???
 
+    test1 (arg1)
     test2 (arg2)
-    test6 (arg6)
-    test7 (arg7)
-    test8 (arg8)
+    test3 (arg3)
+    test4 (arg4)
   }
 
 }
+
+
+// -----------------------------------------------------
+
 
 trait Subtyping02 {
 
@@ -48,12 +52,16 @@ trait Subtyping02 {
     ()
   }
 
+// -----------------------------------------------------
+
   def test03 {
     def foo[T, S](x: Map[T, T], y: Map[S, S]) {}
     val x: Map[Number, String] = ???
     val y: Map[Integer, String] = ???
     foo(x, y)
   }
+
+// -----------------------------------------------------
 
   def test04 {
     class CovMap[+K, +V] // dummy covariant map

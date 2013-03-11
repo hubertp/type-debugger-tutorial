@@ -19,6 +19,7 @@ trait Implicts01 {
     implicit val thirdImplicit: Value[SportsCar] = ???
   }
 
+  // end of produce related declarations
 
   abstract class Producer {
     type Provides <: Product
@@ -41,6 +42,8 @@ trait Implicts01 {
     type Provides = SportsCar
   }
 
+  // end of producer related declarations
+
   object UnderstandingScopes {
     implicit val sixthImplicit: Value[List[SportsCar]] = ???
 
@@ -51,6 +54,10 @@ trait Implicts01 {
     }
   }
 }
+
+
+// -----------------------------------------------------
+
 
 
 trait Implicts02 {
@@ -96,6 +103,12 @@ trait Implicts02 {
 
 }
 
+
+
+// -----------------------------------------------------
+
+
+
 trait Implicits03 {
   class A { def f: Any }
   class B extends A { def f: Int = 5 }
@@ -111,12 +124,19 @@ trait Implicits03 {
     universalComp(new B, new C)
   }
 
+  // ----------------------------
+
   def test02 {
     universalComp(1, 2)
   }
 }
 
-trait Implicits10 {
+
+// -----------------------------------------------------
+
+
+
+trait Implicits04 {
 
   trait SumTuple3 extends Tuple3[Int, Int, Int] {
     def sum: Int
@@ -139,6 +159,12 @@ trait Implicits10 {
 
   }
 }
+
+
+
+// -----------------------------------------------------
+
+
 
 trait Implicits05 {
 
@@ -164,6 +190,8 @@ trait Implicits05 {
 
   }
 
+  // -----------------------------------------------------
+
 
   def test02 {
     class Foo(val x: Int) extends Ordered[Foo] {
@@ -180,6 +208,9 @@ trait Implicits05 {
 
     listOfBar.sorted
   }
+
+
+  // -----------------------------------------------------
 
 
   def test03 {
