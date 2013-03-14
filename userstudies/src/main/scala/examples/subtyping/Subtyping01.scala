@@ -72,8 +72,8 @@ trait Subtyping02 {
     val m1: Map[String, Number]     = ???
     val m2: CovMap[String, Number]  = ???
 
-    val m3: Map[Integer, Number]    = ???
-    val m4: CovMap[Integer, Number] = ???
+    val m3: Map[Integer, Integer]    = ???
+    val m4: CovMap[Integer,Integer] = ???
 
     foo(m1)
     bar(m2)

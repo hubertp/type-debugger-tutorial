@@ -5,14 +5,25 @@ tagline: "Let's solve some puzzles"
 ---
 {% include JB/setup %}
 
+### Online version ###
+
+We would like to better understand how programmers deal with their type errors and how good they are in figuring out what does the typechecker do in general.
+We would be very grateful if you could spend some time on our [survey](http://edu.surveygizmo.com/s3/1179878/Type-Debugger-user-studies) available online at:
+
+http://edu.surveygizmo.com/s3/1179878/Type-Debugger-user-studies
+
+This should also help you in understanding the capabilities and limitations of the tool so that you can use it yourself in your everyday programming in Scala.
+
+### Offline version ###
+
+**Please try the online version first, we want to better understand how to help programmers with their typing problems!**
+
 In order to verify the applicability of our prototype to dealing with type system problems in Scala we will be performing user studies on real problems. We will cover a range of issues that a typical programmer can experience during everyday programming. Some of the topics include:
 
 - basics that include simple member selection or typechecking application
 - subtyping
 - type inference (also understanding its limitations for higher-kinded types)
 - implicit search
-- existentials
-- pattern matching (in a limited form)
 - variance
 
 Target audience for our user studies ranges from beginners to advanced Scala users. Therefore, depending on the skills of the programmer, some of the posted questions might seem trivial but others too hard. In fact some of problems were inspired by questions posted on Scala mailing list or Stackoverflow.

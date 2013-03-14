@@ -19,7 +19,7 @@ trait Implicts01 {
     implicit val thirdImplicit: Value[SportsCar] = ???
   }
 
-  // end of produce related declarations
+  // end of product related declarations
 
   abstract class Producer {
     type Provides <: Product
@@ -44,14 +44,12 @@ trait Implicts01 {
 
   // end of producer related declarations
 
-  object UnderstandingScopes {
-    implicit val sixthImplicit: Value[List[SportsCar]] = ???
+  def test {
+    implicit val sixthImplicit: Value[Car] = ???
 
     def foo[A <: Producer](v: A)(implicit tc: Value[v.Provides]) = v.produce(tc)
 
-    def test01() {
-      foo(new SportsCarProducer)
-    }
+    foo(new SportsCarProducer)
   }
 }
 

@@ -29,15 +29,15 @@ Compiler reports a type mismatch between `Base` and `Product with Serializable w
  - `foo` is a function. Yet it is partially applied and assigned to a value. What does the typechecker do for that to be possible?
 
  - What is the type of `res2`?
- - What are the constraints on `T` while inferring the type of `bar`?
- - Why is the inferred type argument for `T` now different than in the case of `foo` ?
+ - What are the constraints on the bounds of type parameter `T` while inferring type argument for `bar`?
+ - Using your answer to the previous question explain why is the inferred type argument for `T` now different than in the case of `foo` ?
 
 <!-- todo still to decide -->
 #### test05 ####
 Compare almost identical definitions of functions `foo` and `bar`. Their usage (in some theoretical scenario) would be identical yet former reports a type error.
  - Is it possible to give type arguments to `foo` application, that would make the whole application correct? If yes, please state them.
+- What constraint(s) will the typechecker use in order to infer type argument `U` while applying `foo` to `new Base`?
  - What constraint(s) will the typechecker use in order to infer type argument `T` while  applying `foo` to `new Base`?
- - What constraint(s) will the typechecker use in order to infer type argument `U` while applying `foo` to `new Base`?
  - Why is the inferred type argument for `T` `Nothing`?
 
  - What constraint(s) will the typechecker use in order to infer type argument `T` while applying `bar` to `new Base`?
@@ -46,10 +46,10 @@ Compare almost identical definitions of functions `foo` and `bar`. Their usage (
 
 
 #### test06 ####
-We want to define a generic partitioning function over `Iterable` (e.g. `Seq`) that takes a collection and a function which determines the split point of the collection. 
+We want to define a generic partitioning function over `Iterable` that takes a collection and a function which determines the split point of the collection. 
 
 ##### partition01
- - Compiler reports a type mismatch for the last tuple containing `p1` and `p2`. Why is the type of `p1` inferred to be `Iterable[T]` ant not `CC[T]`?
+ - Compiler reports a type mismatch for the last tuple containing `p1` and `p2`. Where is the member `takeWhile` initially defined ? Why is the type of `p1` inferred to be `Iterable[T]` ant not `CC[T]`?
 
 
 ##### partition02
@@ -59,8 +59,8 @@ Notice that the only difference in signature between `partition1` and `partition
  - What is the type of `res2a`?
  - What are the inferred type arguments for `T` and `CC`?
  - We do not provide the implicit argument for `cbf` directly therefore the compiler will have to infer it. Compiler will search for an implicit argument of what type?
- - What is the inferred implicit argument for parameter `cbf`?
- - Were there any other implicits which would be also suitable as implicit arguments in the application of `partition2`? If yes, name one.
+ - What is the inferred implicit argument for parameter `cbf`? Where does it come from?
+ - Were there any other implicits which would be also suitable as implicit arguments in the application of `partition2`? If yes, name one and state where is it defined.
  - How is the type argument for `To` in `CanBuildFrom` parameter inferred?
 
 

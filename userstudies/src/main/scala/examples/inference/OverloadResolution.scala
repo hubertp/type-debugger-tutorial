@@ -119,7 +119,7 @@ trait OverloadedResolution {
 // -----------------------------------------------------
 
 
-  def test05 {
+  object test05 {
     class Base[T]
     class NatA[T] extends Base[T]
     class NatB[T] extends Base[T]

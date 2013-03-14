@@ -8,7 +8,7 @@ object SubtypingFun {
   def foo(f: A => Object) {}
 
   def test() {
-    foo(x1)
     foo(x2)
+    foo(x1)
   }
 }

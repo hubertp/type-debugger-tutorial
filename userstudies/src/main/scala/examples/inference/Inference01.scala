@@ -86,7 +86,7 @@ trait Inference01 {
   // --------------------
 
   def test06 {
-    val seq = Seq(1,2,3)
+    val seq: Seq[Int] = Seq(1,2,3)
 
     def partition1[T, CC[X] <: Iterable[X]](xs: CC[T])
       (cond: T => Boolean): (CC[T], CC[T]) = {
